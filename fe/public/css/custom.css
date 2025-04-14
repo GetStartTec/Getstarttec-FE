@@ -141,9 +141,21 @@
   width: 100%;
 }
 
-/* .get-quote-section:hover {
-  background-color: #e1d7d0;
-} */
+
+
+input[type="radio"]:checked,
+input[type="checkbox"]:checked {
+  background-color: transparent !important;
+  border-color: #ced4da !important; 
+  box-shadow: none !important;
+}
+
+.accordion-button:hover {
+  background-color: rgba(0, 123, 255, 0.1); 
+  cursor: pointer;
+}
+
+
 
 
 .get-quote-section h2 {
@@ -208,6 +220,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 /* Budget section */
+
 .services-section {
   margin-top: 20px;
 }
@@ -290,6 +303,7 @@ button:focus {
 }
 
 /* Radio button and checkbox styles */
+
 .form-radio,
 .form-checkbox {
   width: 1.25rem;
@@ -390,6 +404,7 @@ body {
   }
   
   /* Loader */
+  
   .loader {
     position: relative; 
     transform: rotateZ(45deg);
