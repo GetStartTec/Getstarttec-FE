@@ -67,14 +67,14 @@ export default function QuoteRequestForm() {
             placeholder="Your Email"
             type="email"
             value={formData.email}
-            onChange={(e) => handleChange('email', e.target.value)}
+            onChange={(e:any) => handleChange('email', e.target.value)}
             required
           />
           <Input
             placeholder="Mobile Number"
             type="tel"
             value={formData.mobileNumber}
-            onChange={(e) => handleChange('mobileNumber', e.target.value)}
+            onChange={(e:any) => handleChange('mobileNumber', e.target.value)}
           />
           <Input placeholder="Website URL" />
           <Input placeholder="Company name" />
@@ -108,7 +108,7 @@ export default function QuoteRequestForm() {
             rows={4}
             placeholder="Your Message"
             value={formData.message}
-            onChange={(e) => handleChange('message', e.target.value)}
+            onChange={(e:any) => handleChange('message', e.target.value)}
             required
           />
         </div>
