@@ -3,20 +3,22 @@ import { useState, ChangeEvent, FormEvent } from "react";
 type FormData = {
   name: string;
   email: string;
-  message: string;
   mobileNumber: string;
+  companyName: string;
+  message: string;
+  services: string[];
   budget: string;
-  services: string[]; // Added services array
 };
 
 export const Contact = () => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
-    email: "",
-    message: "",
-    mobileNumber: "",
-    budget: "",
-    services: [], // Initialize services as an empty array
+    email: '',
+    mobileNumber: '',
+    companyName: '', 
+    message: '',
+    services: [],
+    budget: '',
   });
 
   const handleChange = (field: keyof FormData, value: string | string[]) => {
@@ -39,11 +41,13 @@ export const Contact = () => {
     setFormData({
       name: "",
       email: "",
-      message: "",
       mobileNumber: "",
+      companyName: "",
+      message: "",
+      services: [],
       budget: "",
-      services: [], // Reset services field after submit
     });
+    
   };
 
   const testimonials = [
@@ -113,24 +117,87 @@ export const Contact = () => {
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <Input placeholder="First Name*" required />
-                  <Input placeholder="Last Name*" required />
-                  <Input
-                    placeholder="Your Email"
-                    type="email"
-                    value={formData.email}
-                    onChange={(e: any) => handleChange('email', e.target.value)}
-                    required
-                  />
-                  <Input
-                    placeholder="Mobile Number"
-                    type="tel"
-                    value={formData.mobileNumber}
-                    onChange={(e: any) => handleChange('mobileNumber', e.target.value)}
-                  />
-                  <Input placeholder="Website URL" />
-                  <Input placeholder="Company name" />
+                  <div className="form-group">
+                    <input
+                      className="form-control"
+                      type="text"
+                      placeholder="First Name*"
+                      required
+                      value={formData.name}
+                      onChange={(e) => handleChange('name', e.target.value)}
+                    />
+                  </div>
+                 
+                  <div className="form-group">
+                    <input
+                      className="form-control"
+                      type="email"
+                      placeholder="Your Email"
+                      value={formData.email}
+                      onChange={(e) => handleChange('email', e.target.value)}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      className="form-control"
+                      type="tel"
+                      placeholder="Mobile Number"
+                      value={formData.mobileNumber}
+                      onChange={(e) => handleChange('mobileNumber', e.target.value)}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      className="form-control"
+                      type="text"
+                      placeholder="Company name"
+                      value={formData.companyName}
+                      onChange={(e) => handleChange('companyName', e.target.value)}
+                    />
+                  </div>
                 </div>
+
+                <div className="form-group">
+                  <label>Services</label>
+                  <div>
+                    {['Service 1', 'Service 2', 'Service 3'].map((service) => (
+                      <div key={service} className="form-check">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          id={service}
+                          onChange={() =>
+                            setFormData({
+                              ...formData,
+                              services: formData.services.includes(service)
+                                ? formData.services.filter((item) => item !== service)
+                                : [...formData.services, service],
+                            })
+                          }
+                        />
+                        <label className="form-check-label" htmlFor={service}>
+                          {service}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="message">Additional comments</label>
+                  <textarea
+                    className="form-control"
+                    id="message"
+                    rows={4}
+                    placeholder="Your Message"
+                    value={formData.message}
+                    onChange={(e) => handleChange('message', e.target.value)}
+                  />
+                </div>
+
+                <button type="submit" className="btn btn-primary">
+                  Submit
+                </button>
 
                 <div>
                   <p className="font-medium mb-2">What can we do for you?</p>
@@ -145,18 +212,35 @@ export const Contact = () => {
                       'Hosting, Domains & Web Services',
                       'Other',
                     ].map((service) => (
-                      <label key={service} className="flex items-center space-x-2">
-                        <Checkbox id={service} />
-                        <span>{service}</span>
-                      </label>
+                      <div key={service} className="form-check">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          id={service}
+                          onChange={() =>
+                            setFormData({
+                              ...formData,
+                              services: formData.services.includes(service)
+                                ? formData.services.filter((item) => item !== service)
+                                : [...formData.services, service],
+                            })
+                          }
+                        />
+                        <label className="form-check-label" htmlFor={service}>
+                          {service}
+                        </label>
+                      </div>
                     ))}
                   </div>
                 </div>
 
                 <div>
-                  <label className="block font-medium mb-2">Additional comments</label>
-                  <Textarea
-                    className="w-full"
+                  <label className="block font-medium mb-2" htmlFor="message">
+                    Additional comments
+                  </label>
+                  <textarea
+                    className="form-control w-full"
+                    id="message"
                     rows={4}
                     placeholder="Your Message"
                     value={formData.message}
@@ -164,6 +248,7 @@ export const Contact = () => {
                     required
                   />
                 </div>
+
 
                 {/* Social Media */}
                 <div className="contact-social-icons">
@@ -186,240 +271,238 @@ export const Contact = () => {
                     <i className="fab fa-x-twitter"></i>
                   </a>
                 </div>
-            </div>
-
-            {/* Query Form */}
-            <div className="query-form">
-              <h2 className="text-center">Submit Your Query</h2>
-              <form className="contact-form" onSubmit={handleSubmit}>
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  value={formData.name}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    handleChange("name", e.target.value)
-                  }
-                  required
-                  aria-label="Your Name"
-                />
-                <input
-                  type="email"
-                  placeholder="Your Email"
-                  value={formData.email}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    handleChange("email", e.target.value)
-                  }
-                  required
-                  aria-label="Your Email"
-                />
-                <div>
-                  <input
-                    type="text"
-                    name="company"
-                    placeholder="Your Company Name"
-                    className="form-control"
-                    aria-label="Your Company Name"
-                  />
-                </div>
-                <input
-                  type="tel"
-                  placeholder="Mobile Number"
-                  value={formData.mobileNumber}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    handleChange("mobileNumber", e.target.value)
-                  }
-                  pattern="[0-9]{10}"
-                  aria-label="Your Mobile Number"
-                />
-                <textarea
-                  placeholder="Your Message"
-                  rows={4}
-                  value={formData.message}
-                  onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-                    handleChange("message", e.target.value)
-                  }
-                  required
-                  aria-label="Your Message"
-                ></textarea>
-                <button type="submit">Send Message</button>
               </form>
             </div>
           </div>
+          {/* Query Form */}
+          <div className="query-form">
+            <h2 className="text-center">Submit Your Query</h2>
+            <form className="contact-form" onSubmit={handleSubmit}>
+              <input
+                type="text"
+                placeholder="Your Name"
+                value={formData.name}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  handleChange("name", e.target.value)
+                }
+                required
+                aria-label="Your Name"
+              />
+              <input
+                type="email"
+                placeholder="Your Email"
+                value={formData.email}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  handleChange("email", e.target.value)
+                }
+                required
+                aria-label="Your Email"
+              />
+              <div>
+                <input
+                  type="text"
+                  name="company"
+                  placeholder="Your Company Name"
+                  className="form-control"
+                  aria-label="Your Company Name"
+                />
+              </div>
+              <input
+                type="tel"
+                placeholder="Mobile Number"
+                value={formData.mobileNumber}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  handleChange("mobileNumber", e.target.value)
+                }
+                pattern="[0-9]{10}"
+                aria-label="Your Mobile Number"
+              />
+              <textarea
+                placeholder="Your Message"
+                rows={4}
+                value={formData.message}
+                onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+                  handleChange("message", e.target.value)
+                }
+                required
+                aria-label="Your Message"
+              ></textarea>
+              <button type="submit">Send Message</button>
+            </form>
+          </div>
+        </div>
 
-          {/* What Can We Do For You Section */}
-
-
-          {/* Testimonials Section */}
-          <div className="testimonial-section">
-            <h2>What Our Clients Say</h2>
-            <div className="testimonial-grid">
-              {testimonials.map((testimonial, index) => (
-                <div className="testimonial-card" key={index}>
-                  <div className="testimonial-details">
-                    <div className="star-rating">
-                      {[...Array(5)].map((_, idx) => (
-                        <span
-                          key={idx}
-                          className={idx < testimonial.rating ? "star" : "star-empty"}
-                        >
-                          ★
-                        </span>
-                      ))}
-                    </div>
-                    <p className="testimonial-quote">{testimonial.quote}</p>
-                    <img
-                      src={testimonial.image}
-                      alt={testimonial.author}
-                      className="testimonial-image"
-                    />
-                    <p className="testimonial-author">{testimonial.author}</p>
+        {/* Testimonials Section */}
+        <div className="testimonial-section">
+          <h2>What Our Clients Say</h2>
+          <div className="testimonial-grid">
+            {testimonials.map((testimonial, index) => (
+              <div className="testimonial-card" key={index}>
+                <div className="testimonial-details">
+                  <div className="star-rating">
+                    {[...Array(5)].map((_, idx) => (
+                      <span
+                        key={idx}
+                        className={idx < testimonial.rating ? "star" : "star-empty"}
+                      >
+                        ★
+                      </span>
+                    ))}
                   </div>
+                  <p className="testimonial-quote">{testimonial.quote}</p>
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.author}
+                    className="testimonial-image"
+                  />
+                  <p className="testimonial-author">{testimonial.author}</p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
+        </div>
 
 
 
 
-          <div className="text-center my-8">
-            <button
-              onClick={() => setShowQuoteForm(!showQuoteForm)}
-              className="toggle-quote-btn"
-            >
-              Get a Quote
-            </button>
-          </div>
+        <div className="text-center my-8">
+          <button
+            onClick={() => setShowQuoteForm(!showQuoteForm)}
+            className="toggle-quote-btn"
+          >
+            Get a Quote
+          </button>
+        </div>
 
 
-          {showQuoteForm && (
-            <div className="get-quote">
-              <section className="get-quote-section">
+        {showQuoteForm && (
+          <div className="get-quote">
+            <section className="get-quote-section">
 
-                <form className="quote-form">
+              <form className="quote-form">
 
 
-                  {/* Get a Quote Section */}
-                  <div className="get-quote">
-                    <section className="get-quote-section">
-                      <h2>Get a Quote</h2>
-                      <p>Fill in your details and we'll get back to you with a quote.</p>
-                      <form className="quote-form">
-                        <div>
-                          <input
-                            type="text"
-                            name="name"
-                            placeholder="Your Name"
-                            required
-                            className="form-control"
-                            aria-label="Your Name"
-                          />
-                        </div>
-                        <div>
-                          <input
-                            type="email"
-                            name="email"
-                            placeholder="Your Email"
-                            required
-                            className="form-control"
-                            aria-label="Your Email"
-                          />
-                        </div>
-                        <div>
-                          <input
-                            type="tel"
-                            name="phone"
-                            placeholder="Your Phone Number"
-                            required
-                            className="form-control"
-                            aria-label="Your Phone Number"
-                          />
-                        </div>
-                        <div>
-                          <input
-                            type="text"
-                            name="company"
-                            placeholder="Your Company Name"
-                            className="form-control"
-                            aria-label="Your Company Name"
-                          />
-                        </div>
-                        <div>
-                          <textarea
-                            name="message"
-                            rows={4}
-                            placeholder="Tell us about your needs..."
-                            className="form-control"
-                            aria-label="Your Message"
-                          ></textarea>
-                        </div>
+                {/* Get a Quote Section */}
+                <div className="get-quote">
+                  <section className="get-quote-section">
+                    <h2>Get a Quote</h2>
+                    <p>Fill in your details and we'll get back to you with a quote.</p>
+                    <form className="quote-form">
+                      <div>
+                        <input
+                          type="text"
+                          name="name"
+                          placeholder="Your Name"
+                          required
+                          className="form-control"
+                          aria-label="Your Name"
+                        />
+                      </div>
+                      <div>
+                        <input
+                          type="email"
+                          name="email"
+                          placeholder="Your Email"
+                          required
+                          className="form-control"
+                          aria-label="Your Email"
+                        />
+                      </div>
+                      <div>
+                        <input
+                          type="tel"
+                          name="phone"
+                          placeholder="Your Phone Number"
+                          required
+                          className="form-control"
+                          aria-label="Your Phone Number"
+                        />
+                      </div>
+                      <div>
+                        <input
+                          type="text"
+                          name="company"
+                          placeholder="Your Company Name"
+                          className="form-control"
+                          aria-label="Your Company Name"
+                        />
+                      </div>
+                      <div>
+                        <textarea
+                          name="message"
+                          rows={4}
+                          placeholder="Tell us about your needs..."
+                          className="form-control"
+                          aria-label="Your Message"
+                        ></textarea>
+                      </div>
 
-                        <p className="font-medium mb-2">What is your estimated budget?</p>
-                        <div className="space-y-2">
+                      <p className="font-medium mb-2">What is your estimated budget?</p>
+                      <div className="space-y-2">
+                        {[
+                          "$0 - $1,000",
+                          "$1,000 - $10,000",
+                          "$10,000 - $25,000",
+                          "$25,000 - $75,000",
+                          "$75,000+",
+                        ].map((budget) => (
+                          <label key={budget} className="flex items-center space-x-2">
+                            <input
+                              type="radio"
+                              name="budget"
+                              value={budget}
+                              checked={formData.budget === budget}
+                              onChange={(e) => handleChange("budget", e.target.value)}
+                              className="form-radio"
+                              aria-label={`Select budget range ${budget}`}
+                            />
+                            <span>{budget}</span>
+                          </label>
+                        ))}
+                      </div>
+
+                      <div className="services-section">
+                        <p className="font-medium mb-2">What can we do for you?</p>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                           {[
-                            "$0 - $1,000",
-                            "$1,000 - $10,000",
-                            "$10,000 - $25,000",
-                            "$25,000 - $75,000",
-                            "$75,000+",
-                          ].map((budget) => (
-                            <label key={budget} className="flex items-center space-x-2">
+                            'Branding',
+                            'Brand Strategy & Growth',
+                            'Web Design & Development',
+                            'Web Support',
+                            'Marketing & Advertising',
+                            'Sales Enablement',
+                            'Hosting, Domains & Web Services',
+                            'Other',
+                          ].map((service) => (
+                            <label key={service} className="flex items-center space-x-2">
                               <input
-                                type="radio"
-                                name="budget"
-                                value={budget}
-                                checked={formData.budget === budget}
-                                onChange={(e) => handleChange("budget", e.target.value)}
-                                className="form-radio"
-                                aria-label={`Select budget range ${budget}`}
+                                type="checkbox"
+                                id={service}
+                                checked={formData.services.includes(service)}
+                                onChange={() => handleCheckboxChange(service)}
+                                className="form-checkbox"
+                                aria-label={`Select ${service}`}
                               />
-                              <span>{budget}</span>
+
+                              <span>{service}</span>
                             </label>
                           ))}
                         </div>
+                      </div>
+                      <button type="submit" className="quote-btn">
+                        Request Quote
+                      </button>
+                    </form>
+                  </section>
+                </div>
 
-                        <div className="services-section">
-                          <p className="font-medium mb-2">What can we do for you?</p>
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                            {[
-                              'Branding',
-                              'Brand Strategy & Growth',
-                              'Web Design & Development',
-                              'Web Support',
-                              'Marketing & Advertising',
-                              'Sales Enablement',
-                              'Hosting, Domains & Web Services',
-                              'Other',
-                            ].map((service) => (
-                              <label key={service} className="flex items-center space-x-2">
-                                <input
-                                  type="checkbox"
-                                  id={service}
-                                  checked={formData.services.includes(service)}
-                                  onChange={() => handleCheckboxChange(service)}
-                                  className="form-checkbox"
-                                  aria-label={`Select ${service}`}
-                                />
-
-                                <span>{service}</span>
-                              </label>
-                            ))}
-                          </div>
-                        </div>
-                        <button type="submit" className="quote-btn">
-                          Request Quote
-                        </button>
-                      </form>
-                    </section>
-                  </div>
-
-                </form>
-              </section>
-            </div>
-          )}
+              </form>
+            </section>
+          </div>
+        )}
 
 
-        </div>
-      </>
-      );
+      </div>
+    </>
+  );
 };
