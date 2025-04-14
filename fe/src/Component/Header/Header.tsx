@@ -22,10 +22,23 @@ export const Header = () => {
     };
 
     const handleLinkClick = (path: string) => {
-        navigate(path);
         setIsOpen(false);
-        window.scrollTo({ top: 0, behavior: "smooth" });
+    
+        if (path === "/contact-us#quote") {
+            navigate("/contact-us#quote");
+    
+            setTimeout(() => {
+                const el = document.getElementById("quote");
+                if (el) {
+                    el.scrollIntoView({ behavior: "smooth" });
+                }
+            }, 100);
+        } else {
+            navigate(path);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
     };
+    
 
     return (
         <nav
@@ -60,7 +73,7 @@ export const Header = () => {
                             { path: "/services", label: "Services" },
                             { path: "/projects", label: "Projects" },
                             { path: "/contact-us", label: "Contact Us" },
-                            { path: "/get-a-quote", label: "Get a Quote", isButton: true },
+                            { path: "/contact-us#quote", className: "get-quote", label: "Get a Quote", isButton: true }
                         ].map(({ path, label, isButton }) => (
                             <li className="nav-item me-4 fs-5" key={path}>
                                 {isButton ? (

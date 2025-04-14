@@ -1,4 +1,6 @@
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, useEffect, FormEvent } from "react";
+import { useLocation } from 'react-router-dom';
+
 
 type FormData = {
   name: string;
@@ -11,11 +13,12 @@ type FormData = {
 };
 
 export const Contact = () => {
+
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: '',
     mobileNumber: '',
-    companyName: '', 
+    companyName: '',
     message: '',
     services: [],
     budget: '',
@@ -24,6 +27,8 @@ export const Contact = () => {
   const handleChange = (field: keyof FormData, value: string | string[]) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
+
+
 
   const handleCheckboxChange = (service: string) => {
     setFormData((prev) => {
@@ -47,7 +52,7 @@ export const Contact = () => {
       services: [],
       budget: "",
     });
-    
+
   };
 
   const testimonials = [
@@ -73,264 +78,148 @@ export const Contact = () => {
 
   const [showQuoteForm, setShowQuoteForm] = useState(false);
 
+  const location = useLocation();
+  useEffect(() => {
+    if (location.hash === "#quote") {
+      setShowQuoteForm(true);
+    } else {
+      setShowQuoteForm(false);
+    }
+  }, [location]);
+
 
   return (
     <>
       <div className="contact-page">
         {/* Hero Section */}
-        <div className="hero-section">
+        <div className="position-relative text-white text-center" style={{ height: '500px' }}>
+          {/* Background Image */}
           <img
             src={`${process.env.PUBLIC_URL}/images/contact-us-banner.jpg`}
             alt="Contact"
-            className="hero-image"
+            className="img-fluid w-100 h-100"
+            style={{ objectFit: 'cover', position: 'absolute', top: 0, left: 0, zIndex: 0 }}
           />
-          <div className="hero-content">
-            <h1>Get in Touch</h1>
-            <p>We’d love to hear from you! Reach out with any queries or concerns.</p>
+
+          {/* Dark Overlay */}
+          <div
+            className="position-absolute top-0 start-0 w-100 h-100"
+            style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', zIndex: 1 }}
+          ></div>
+
+          {/* Text Content */}
+          <div
+            className="position-absolute top-50 start-50 translate-middle"
+            style={{ zIndex: 2 }}
+          >
+            <h1 className="display-5 fw-bold">Get in Touch</h1>
+            <p className="lead">We’d love to hear from you! Reach out with any queries or concerns.</p>
           </div>
         </div>
+
+
 
         {/* Contact Info & Form */}
-        <div className="contact-container">
-          {/* Contact Info */}
-          <div className="contact-info">
-            <h2>Our Location</h2>
-            <div className="contact-details">
-              <p>
-                <i className="fas fa-envelope contact-icon" aria-label="Email"></i>
-                example@email.com
-              </p>
-              <p>
-                <i className="fas fa-phone-alt contact-icon" aria-label="Phone"></i>
-                +91-xxxxx
-              </p>
-            </div>
-            <div className="max-w-4xl mx-auto py-10 px-4">
-              <h1 className="text-3xl font-bold text-center mb-2">Request A Quote</h1>
-              <p className="text-center text-red-600 font-semibold mb-6">
-                (435) 631-9968 | hello@bigredjelly.com
-              </p>
+        <div className="container py-5">
+  <div className="row">
 
-              <form className="bg-white shadow-md rounded-2xl p-8 space-y-6" onSubmit={handleSubmit}>
-                <p className="text-center text-lg font-medium">
-                  Complete our form and receive a free quote on how we can help brand, build and grow your business.
-                </p>
+    {/* Contact Info */}
+    <div className="col-md-6 mb-4">
+      <h2 className="mb-4">Our Location</h2>
+      <div className="contact-details">
+        <p>
+          <i className="fas fa-envelope me-2" aria-label="Email"></i>
+          example@email.com
+        </p>
+        <p>
+          <i className="fas fa-phone-alt me-2" aria-label="Phone"></i>
+          +91-xxxxx
+        </p>
+      </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="form-group">
-                    <input
-                      className="form-control"
-                      type="text"
-                      placeholder="First Name*"
-                      required
-                      value={formData.name}
-                      onChange={(e) => handleChange('name', e.target.value)}
-                    />
-                  </div>
-                 
-                  <div className="form-group">
-                    <input
-                      className="form-control"
-                      type="email"
-                      placeholder="Your Email"
-                      value={formData.email}
-                      onChange={(e) => handleChange('email', e.target.value)}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <input
-                      className="form-control"
-                      type="tel"
-                      placeholder="Mobile Number"
-                      value={formData.mobileNumber}
-                      onChange={(e) => handleChange('mobileNumber', e.target.value)}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <input
-                      className="form-control"
-                      type="text"
-                      placeholder="Company name"
-                      value={formData.companyName}
-                      onChange={(e) => handleChange('companyName', e.target.value)}
-                    />
-                  </div>
-                </div>
+      {/* Social Icons */}
+      <div className="contact-social-icons">
+        <a href="tel:+91" className="me-3 text-dark fs-4">
+          <i className="fas fa-phone"></i>
+        </a>
+        <a href="https://wa.me/91" className="me-3 text-success fs-4" target="_blank" rel="noopener noreferrer">
+          <i className="fab fa-whatsapp"></i>
+        </a>
+        <a href="mailto:" className="me-3 text-danger fs-4">
+          <i className="fas fa-envelope"></i>
+        </a>
+        <a href="#" className="me-3 text-primary fs-4">
+          <i className="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" className="me-3 text-warning fs-4">
+          <i className="fab fa-instagram"></i>
+        </a>
+        <a href="#" className="text-dark fs-4">
+          <i className="fab fa-twitter"></i>
+        </a>
+      </div>
+    </div>
 
-                <div className="form-group">
-                  <label>Services</label>
-                  <div>
-                    {['Service 1', 'Service 2', 'Service 3'].map((service) => (
-                      <div key={service} className="form-check">
-                        <input
-                          className="form-check-input"
-                          type="checkbox"
-                          id={service}
-                          onChange={() =>
-                            setFormData({
-                              ...formData,
-                              services: formData.services.includes(service)
-                                ? formData.services.filter((item) => item !== service)
-                                : [...formData.services, service],
-                            })
-                          }
-                        />
-                        <label className="form-check-label" htmlFor={service}>
-                          {service}
-                        </label>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="message">Additional comments</label>
-                  <textarea
-                    className="form-control"
-                    id="message"
-                    rows={4}
-                    placeholder="Your Message"
-                    value={formData.message}
-                    onChange={(e) => handleChange('message', e.target.value)}
-                  />
-                </div>
-
-                <button type="submit" className="btn btn-primary">
-                  Submit
-                </button>
-
-                <div>
-                  <p className="font-medium mb-2">What can we do for you?</p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                    {[
-                      'Branding',
-                      'Brand Strategy & Growth',
-                      'Web Design & Development',
-                      'Web Support',
-                      'Marketing & Advertising',
-                      'Sales Enablement',
-                      'Hosting, Domains & Web Services',
-                      'Other',
-                    ].map((service) => (
-                      <div key={service} className="form-check">
-                        <input
-                          className="form-check-input"
-                          type="checkbox"
-                          id={service}
-                          onChange={() =>
-                            setFormData({
-                              ...formData,
-                              services: formData.services.includes(service)
-                                ? formData.services.filter((item) => item !== service)
-                                : [...formData.services, service],
-                            })
-                          }
-                        />
-                        <label className="form-check-label" htmlFor={service}>
-                          {service}
-                        </label>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block font-medium mb-2" htmlFor="message">
-                    Additional comments
-                  </label>
-                  <textarea
-                    className="form-control w-full"
-                    id="message"
-                    rows={4}
-                    placeholder="Your Message"
-                    value={formData.message}
-                    onChange={(e: any) => handleChange('message', e.target.value)}
-                    required
-                  />
-                </div>
-
-
-                {/* Social Media */}
-                <div className="contact-social-icons">
-                  <a href="tel:+91" target="_blank" rel="noopener noreferrer" aria-label="Call">
-                    <i className="fas fa-phone"></i>
-                  </a>
-                  <a href="https://wa.me/91" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-                    <i className="fab fa-whatsapp"></i>
-                  </a>
-                  <a href="mailto:" target="_blank" rel="noopener noreferrer" aria-label="Email">
-                    <i className="fas fa-envelope"></i>
-                  </a>
-                  <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                    <i className="fab fa-facebook-f"></i>
-                  </a>
-                  <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                    <i className="fab fa-instagram"></i>
-                  </a>
-                  <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                    <i className="fab fa-x-twitter"></i>
-                  </a>
-                </div>
-              </form>
-            </div>
-          </div>
-          {/* Query Form */}
-          <div className="query-form">
-            <h2 className="text-center">Submit Your Query</h2>
-            <form className="contact-form" onSubmit={handleSubmit}>
-              <input
-                type="text"
-                placeholder="Your Name"
-                value={formData.name}
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  handleChange("name", e.target.value)
-                }
-                required
-                aria-label="Your Name"
-              />
-              <input
-                type="email"
-                placeholder="Your Email"
-                value={formData.email}
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  handleChange("email", e.target.value)
-                }
-                required
-                aria-label="Your Email"
-              />
-              <div>
-                <input
-                  type="text"
-                  name="company"
-                  placeholder="Your Company Name"
-                  className="form-control"
-                  aria-label="Your Company Name"
-                />
-              </div>
-              <input
-                type="tel"
-                placeholder="Mobile Number"
-                value={formData.mobileNumber}
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  handleChange("mobileNumber", e.target.value)
-                }
-                pattern="[0-9]{10}"
-                aria-label="Your Mobile Number"
-              />
-              <textarea
-                placeholder="Your Message"
-                rows={4}
-                value={formData.message}
-                onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-                  handleChange("message", e.target.value)
-                }
-                required
-                aria-label="Your Message"
-              ></textarea>
-              <button type="submit">Send Message</button>
-            </form>
-          </div>
+    {/* Query Form */}
+    <div className="col-md-6">
+      <h2 className="mb-4 text-center">Submit Your Query</h2>
+      <form className="contact-form" onSubmit={handleSubmit}>
+        
+        <div className="mb-3">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Your Name"
+            value={formData.name}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange("name", e.target.value)}
+            required
+            aria-label="Your Name"
+          />
         </div>
+
+        <div className="mb-3">
+          <input
+            type="email"
+            className="form-control"
+            placeholder="Your Email"
+            value={formData.email}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange("email", e.target.value)}
+            required
+            aria-label="Your Email"
+          />
+        </div>
+
+        <div className="mb-3">
+          <input
+            type="tel"
+            className="form-control"
+            placeholder="Mobile Number"
+            value={formData.mobileNumber}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange("mobileNumber", e.target.value)}
+            pattern="[0-9]{10}"
+            aria-label="Your Mobile Number"
+          />
+        </div>
+
+        <div className="mb-3">
+          <textarea
+            className="form-control"
+            placeholder="Your Message"
+            rows={4}
+            value={formData.message}
+            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => handleChange("message", e.target.value)}
+            required
+            aria-label="Your Message"
+          ></textarea>
+        </div>
+
+        <button type="submit" className="btn btn-primary w-80">Send Message</button>
+      </form>
+    </div>
+
+  </div>
+</div>
+
 
         {/* Testimonials Section */}
         <div className="testimonial-section">
@@ -392,7 +281,7 @@ export const Contact = () => {
                         <input
                           type="text"
                           name="name"
-                          placeholder="Your Name"
+                          placeholder="Name"
                           required
                           className="form-control"
                           aria-label="Your Name"
@@ -402,7 +291,7 @@ export const Contact = () => {
                         <input
                           type="email"
                           name="email"
-                          placeholder="Your Email"
+                          placeholder="Email"
                           required
                           className="form-control"
                           aria-label="Your Email"
@@ -412,7 +301,7 @@ export const Contact = () => {
                         <input
                           type="tel"
                           name="phone"
-                          placeholder="Your Phone Number"
+                          placeholder="Mobile Number"
                           required
                           className="form-control"
                           aria-label="Your Phone Number"
@@ -422,7 +311,7 @@ export const Contact = () => {
                         <input
                           type="text"
                           name="company"
-                          placeholder="Your Company Name"
+                          placeholder="Company Name"
                           className="form-control"
                           aria-label="Your Company Name"
                         />
