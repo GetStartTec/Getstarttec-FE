@@ -298,6 +298,7 @@
 }
 body {
     font-family: 'Winky Rough', sans-serif !important;
+    background: linear-gradient(135deg, #006A71, #8F87F1, #C68EFD, #E9A5F1, #FED2E2);
   }
 /* Loader */
   .loader-wrapper {
@@ -556,3 +557,134 @@ body {
 .quote-btn:hover {
   background-color: #e65c00;
 }
+/* About-Us */
+.about-container {
+  background: linear-gradient(135deg, #006A71, #8F87F1, #C68EFD, #E9A5F1, #FED2E2);
+  min-height: 550px;
+}
+@media (min-width: 992px) {
+  .process-line-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 50px; /* vertical position of line */
+    left: 12.5%;
+    width: 75%;
+    height: 2px;
+    background-color: #0d6efd; /* Bootstrap primary */
+    z-index: 0;
+  }
+
+  .process-line-wrapper .col-lg-3::before {
+    content: "";
+    position: absolute;
+    top: 36px;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    border: 2px solid #0d6efd;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+}
+/* Timeline Container */
+.timeline {
+  position: relative;
+  padding: 40px 0;
+}
+
+/* Timeline Item */
+.timeline-item {
+  display: flex;
+  margin-bottom: 40px;
+  position: relative;
+  align-items: center;
+}
+
+/* Timeline Icon */
+.timeline-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  position: relative;
+  z-index: 1;
+  margin-right: 20px;
+}
+
+.timeline-icon.bg-primary {
+  background-color: #007bff;
+}
+
+.timeline-icon.bg-secondary {
+  background-color: #6c757d;
+}
+
+.timeline-icon.bg-success {
+  background-color: #28a745;
+}
+
+.timeline-icon.bg-warning {
+  background-color: #ffc107;
+}
+
+.timeline-icon.bg-danger {
+  background-color: #dc3545;
+}
+
+/* Timeline Content */
+.timeline-content {
+  flex-grow: 1;
+  padding-left: 10px;
+}
+
+.timeline-content h5 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.timeline-content p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.timeline-content span {
+  font-size: 12px;
+  font-style: italic;
+}
+
+/* Timeline Progress Bar */
+.timeline-content .progress {
+  border-radius: 20px;
+}
+
+.progress-bar {
+  border-radius: 20px;
+  height: 10px;
+  transition: width 0.5s ease-in-out;
+}
+
+/* Add a vertical connecting line */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 25px;
+  width: 2px;
+  background-color: #dcdcdc;
+  z-index: 0;
+}
+
+/* Timeline Item Hover Effect */
+.timeline-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+

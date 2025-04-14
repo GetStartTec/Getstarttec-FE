@@ -13,7 +13,6 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <Loader />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about-us" element={<About />} />

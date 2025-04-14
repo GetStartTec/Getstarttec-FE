@@ -29,8 +29,7 @@ export const Header = () => {
 
     return (
         <nav
-            className={`navbar navbar-expand-lg fixed-top ${isScrolled ? "bg-light shadow-sm" : "bg-transparent"
-                }`}
+            className={"navbar navbar-expand-lg fixed-top"}
         >
             <div className="container-fluid fs-5">
                 <div className="navbar-brand d-flex align-items-center" onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
@@ -54,7 +53,7 @@ export const Header = () => {
 
                 <div className={`collapse navbar-collapse ${isOpen ? "show" : ""}`} id="navbarNav">
                     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-                        {[
+                        {[ 
                             { path: "/", label: "Home" },
                             { path: "/about-us", label: "About Us" },
                             { path: "/services", label: "Services" },
@@ -82,7 +81,6 @@ export const Header = () => {
                             </li>
                         ))}
                     </ul>
-
                 </div>
             </div>
         </nav>
