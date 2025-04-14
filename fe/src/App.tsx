@@ -6,6 +6,7 @@ import { Projects } from "./Component/Projects/Projects";
 import { Contact } from "./Component/Contact/Contact";
 import { Header } from "./Component/Header/Header";
 import { Footer } from "./Component/Footer/Footer";
+import { Loader } from "./Component/Loader/Loder";
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
     <>
     <BrowserRouter>
     <Header></Header>
+    <Loader></Loader>
     <Routes>
       <Route
       path="/" element={<Home></Home>}>
