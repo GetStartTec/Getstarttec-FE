@@ -885,3 +885,231 @@ body {
     margin-top: 15px;
   }
 }
+/* 1) Container for all rings */
+.tech-rings-container {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin: 3rem auto;
+}
+
+.ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px solid gray;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.center-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.center-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  background-color: white;
+}
+
+.icon-node {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 2px solid #ccc; /* gray border */
+  border-radius: 50%; /* makes it a circle */
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.icon-node img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+
+.tech-stack-section {
+  margin-top: 4rem;
+  padding: 2rem;
+}
+
+.tech-stack-content {
+  max-width: 400px;
+}
+
+@keyframes rotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.ring {
+  animation: rotate 1s linear infinite;
+}
+
+.ring:nth-child(odd) {
+  animation-direction: reverse;
+}.industries-served {
+  padding: 40px 20px;
+  margin: 10px;
+  background-color: transparent;
+  text-align: center;
+}
+
+.industries-served h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.industry-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive columns */
+  gap: 20px;
+}
+
+.industry-card {
+  position: relative;
+  padding: 20px;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  background-color: transparent;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.industry-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.industry-icon {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.industry-icon img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 50%;
+  border: 2px solid #ddd; /* Circle border around icons */
+}
+
+.industry-info {
+  text-align: center;
+}
+
+.industry-info h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.industry-info p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.industry-card:hover .industry-info p {
+  color: #000; /* Change color on hover */
+}
+
+.industry-card:hover .industry-info h3 {
+  color: #0056b3; /* Highlight title on hover */
+}
+
+/* Responsive adjustments for better spacing */
+@media (max-width: 1024px) {
+  .industry-cards {
+    grid-template-columns: repeat(6, 1fr); /* 6 items per row on medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .industry-cards {
+    grid-template-columns: repeat(5, 1fr); /* 5 items per row on small screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .industry-cards {
+    grid-template-columns: repeat(3, 1fr); /* 3 items per row on mobile screens */
+  }
+}
+
+.why-choose-us {
+  background-color: transparent;
+}
+
+.why-choose-us h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #222;
+}
+
+.why-choose-us .lead {
+  font-size: 1.125rem;
+  color: #555;
+}
+
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.card .price {
+  background: transparent;
+  padding: 1rem 0;
+  border-radius: 8px;
+}
+
+.card .price .h1 {
+  color: #007bff;
+}
+
+.card ul li {
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.card ul li i {
+  font-size: 1.1rem;
+}
+
+.card .btn {
+  background-color: #007bff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  padding: 0.6rem 1.2rem;
+}
+
+.card .btn:hover {
+  background-color: #0056b3;
+}
+
