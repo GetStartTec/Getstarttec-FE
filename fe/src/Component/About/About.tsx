@@ -14,7 +14,7 @@ export const About = () => {
                 </div>
                 <div className="col-md-5 p-4 d-flex align-items-center">
                     <img
-                        src="https://via.placeholder.com/500x400"
+                        src="/images/about-us.jpg"
                         alt="Get Start Tec"
                         className="img-fluid w-100"
                     />
@@ -99,9 +99,10 @@ export const About = () => {
                         {/* Image section */}
                         <div className="col-md-6 mb-4 mb-md-0">
                             <img
-                                src="https://images.unsplash.com/photo-1600880292089-90e6a0b98e16?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                src="/images/customer.jpg"
                                 alt="Customer Collaboration"
                                 className="img-fluid rounded shadow-lg"
+                                style={{objectFit:"cover"}}
                             />
                         </div>
 

@@ -936,9 +936,10 @@ body {
 }
 
 .icon-node img {
-  width: 30px;
-  height: 30px;
-  object-fit: contain;
+  width: 40px;
+  
+  height: 40px;
+  object-fit: cover;
 }
 
 
@@ -1006,9 +1007,9 @@ body {
 }
 
 .industry-icon img {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
   border-radius: 50%;
   border: 2px solid #ddd; /* Circle border around icons */
 }

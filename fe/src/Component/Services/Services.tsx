@@ -5,141 +5,126 @@ export const Services = () => {
             radius: 140,
             icons: [
                 { src: "/images/html.png", alt: "HTML" },
-                { src: "/images/html.png", alt: "CSS" },
-                { src: "/images/html.png", alt: "React TS" },
-                { src: "/images/html.png", alt: "Bootstrap" },
-                { src: "/images/html.png", alt: "Material UI" },
+                { src: "/images/css.png", alt: "CSS" },
+                { src: "/images/react.png", alt: "React TS" },
+                { src: "/images/bootstrap.png", alt: "Bootstrap" },
+                { src: "/images/material.png", alt: "Material UI" },
             ],
         },
         {
             label: 'BE',
             radius: 100,
             icons: [
-                { src: "/images/html.png", alt: "Node.js" },
-                { src: "/images/html.png", alt: "PHP" },
-                { src: "/images/html.png", alt: "Java" },
+                { src: "/images/node.png", alt: "Node.js" },
+                { src: "/images/php.png", alt: "PHP" },
+                { src: "/images/java.png", alt: "Java" },
             ],
         },
         {
             label: 'DB',
             radius: 60,
             icons: [
-                { src: "/images/html.png", alt: "MSSQL" },
-                { src: "/images/html.png", alt: "MySQL" },
-                { src: "/images/html.png", alt: "MongoDB" },
+                { src: "/images/mssql.png", alt: "MSSQL" },
+                { src: "/images/mysql.png", alt: "MySQL" },
+                { src: "/images/mongo.png", alt: "MongoDB" },
             ],
         },
     ];
     const industries = [
         {
-            icon: '/images/education-icon.svg',
+            icon: '/images/education.jpg',
             name: 'Education',
             description: 'We build innovative solutions for e-learning platforms, learning management systems (LMS), and digital classrooms to support modern education.'
         },
         {
-            icon: '/images/healthcare-icon.svg',
+            icon: '/images/healthcare.jpg',
             name: 'Healthcare',
             description: 'We provide healthcare solutions for hospitals, clinics, and telemedicine services, including patient management systems and medical record applications.'
         },
         {
-            icon: '/images/ecommerce-icon.svg',
+            icon: '/images/ecommerce.jpg',
             name: 'E-Commerce',
             description: 'We develop feature-rich e-commerce platforms with seamless user experiences, payment gateway integration, and product management systems.'
         },
         {
-            icon: '/images/finance-icon.svg',
+            icon: '/images/finance.jpg',
             name: 'Finance',
             description: 'Our fintech solutions cover online banking, mobile payment systems, and investment platforms with a focus on security and compliance.'
         },
         {
-            icon: '/images/real-estate-icon.svg',
+            icon: '/images/realestate.jpg',
             name: 'Real Estate',
             description: 'We create real estate management systems, property listing platforms, and customer relationship management (CRM) systems tailored for real estate businesses.'
         },
         {
-            icon: '/images/manufacturing-icon.svg',
+            icon: '/images/manufacturing.jpg',
             name: 'Manufacturing',
             description: 'We develop custom ERP systems, production management tools, and IoT integration for smart manufacturing and inventory management.'
         },
         {
-            icon: '/images/travel-icon.svg',
+            icon: '/images/travels.jpg',
             name: 'Travel & Hospitality',
             description: 'We design travel booking systems, hotel management platforms, and customer service tools that enhance the travel and hospitality experience.'
         },
         {
-            icon: '/images/automotive-icon.svg',
+            icon: '/images/automotive.jpg',
             name: 'Automotive',
             description: 'We provide solutions for automotive businesses including fleet management systems, service booking apps, and IoT-based vehicle monitoring platforms.'
         },
         {
-            icon: '/images/logistics-icon.svg',
+            icon: '/images/logistics.jpg',
             name: 'Logistics & Supply Chain',
             description: 'Our logistics software solutions include real-time tracking, route optimization, and inventory management for supply chain efficiency.'
         },
         {
-            icon: '/images/government-icon.svg',
+            icon: '/images/govt.jpg',
             name: 'Government & Public Sector',
             description: 'We develop solutions for digital governance, e-filing, citizen engagement platforms, and public services management systems.'
         },
         {
-            icon: '/images/retail-icon.svg',
+            icon: '/images/retail.jpg',
             name: 'Retail',
             description: 'We build integrated POS systems, inventory management, and customer engagement platforms for retail businesses looking to streamline their operations.'
         },
         {
-            icon: '/images/telecom-icon.svg',
+            icon: '/images/telecommunication.jpg',
             name: 'Telecommunications',
             description: 'We design billing systems, customer service portals, and network management tools for telecom companies to enhance customer satisfaction.'
         },
         {
-            icon: '/images/media-icon.svg',
+            icon: '/images/media.jpg',
             name: 'Media & Entertainment',
             description: 'Our software solutions cover media content management, streaming platforms, and digital rights management (DRM) for the entertainment industry.'
         },
         {
-            icon: '/images/sports-icon.svg',
+            icon: '/images/sports.jpg',
             name: 'Sports & Fitness',
             description: 'We build sports management systems, fitness tracking apps, and virtual training platforms to enhance the sports and fitness experience.'
         },
         {
-            icon: '/images/logistics-icon.svg',
-            name: 'Logistics & Delivery',
-            description: 'We offer real-time tracking, delivery scheduling, and order management software solutions for logistics and delivery services.'
-        },
-        {
-            icon: '/images/insurance-icon.svg',
+            icon: '/images/insurence.jpg',
             name: 'Insurance',
             description: 'We provide policy management systems, claim processing tools, and digital solutions for the insurance industry.'
         },
         {
-            icon: '/images/marketing-icon.svg',
+            icon: '/images/marketing.jpg',
             name: 'Marketing & Advertising',
             description: 'Our software solutions include ad campaign management systems, customer data analytics platforms, and digital marketing tools for businesses.'
         },
         {
-            icon: '/images/legal-icon.svg',
+            icon: '/images/legal.jpg',
             name: 'Legal',
             description: 'We create solutions for law firms and legal service providers, including case management systems, document automation, and client portals.'
         },
         {
-            icon: '/images/nonprofit-icon.svg',
+            icon: '/images/ngo.jpg',
             name: 'Non-Profit & NGOs',
             description: 'We provide software solutions for non-profits including donor management systems, volunteer coordination, and fundraising platforms.'
         },
         {
-            icon: '/images/supply-chain-icon.svg',
-            name: 'Supply Chain & Inventory',
-            description: 'We offer custom-built systems for inventory management, order processing, procurement, and supply chain optimization.'
-        },
-        {
-            icon: '/images/tech-startups-icon.svg',
+            icon: '/images/startup.jpg',
             name: 'Tech Startups',
             description: 'We assist startups with scalable, cloud-native solutions, MVP development, and rapid prototyping to bring their innovative ideas to market faster.'
-        },
-        {
-            icon: '/images/energy-icon.svg',
-            name: 'Energy & Utilities',
-            description: 'We offer software solutions for energy management, smart grid systems, and IoT-based monitoring to improve operational efficiency in the energy sector.'
         },
     ];
 
@@ -161,7 +146,7 @@ export const Services = () => {
                 </div>
                 <div className="col-md-5 p-4 d-flex align-items-center">
                     <img
-                        src="https://via.placeholder.com/500x400"
+                        src="/images/services.jpg"
                         alt="Get Start Tec"
                         className="img-fluid w-100"
                     />
@@ -234,7 +219,7 @@ export const Services = () => {
                     <div className="col-md-6">
                         <div className="tech-rings-container position-relative mx-auto">
                             <div className="center-logo">
-                                <img src="/images/js-css-html.png" alt="Core Tech" />
+                                <img src="/images/core-stack.png" alt="Core Tech" />
                             </div>
                             {rings.map(({ label, radius, icons }, index) => (
                                 <div
@@ -260,6 +245,7 @@ export const Services = () => {
                                                 style={{
                                                     left: `calc(50% + ${x}px)`,
                                                     top: `calc(50% + ${y}px)`,
+                                                    objectFit:'cover',
                                                     transform: `translate(-50%, -50%) rotate(${-angle}deg)`,
                                                 }}
                                             >
