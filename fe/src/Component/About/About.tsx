@@ -14,7 +14,7 @@ export const About = () => {
                 </div>
                 <div className="col-md-5 p-4 d-flex align-items-center">
                     <img
-                        src="/images/about-us.jpg"
+                        src="/images/about-us.png"
                         alt="Get Start Tec"
                         className="img-fluid w-100"
                     />
@@ -102,7 +102,7 @@ export const About = () => {
                                 src="/images/customer.jpg"
                                 alt="Customer Collaboration"
                                 className="img-fluid rounded shadow-lg"
-                                style={{objectFit:"cover"}}
+                                style={{objectFit:"cover",height:"450px"}}
                             />
                         </div>
 
