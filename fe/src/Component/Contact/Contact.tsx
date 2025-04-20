@@ -1,7 +1,7 @@
-import { useState, ChangeEvent, useEffect, FormEvent } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import { useLocation } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import 'animate.css';
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import 'animate.css';
 
 
 type FormData = {

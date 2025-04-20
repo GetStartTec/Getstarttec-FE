@@ -1268,3 +1268,55 @@ body {
     opacity: 0.2;
   }
     
+
+.about-container {
+  background-color: rgba(255, 255, 255, 0.8); /* optional soft white overlay */
+  border-radius: 12px;
+  backdrop-filter: blur(5px); /* optional modern glassy effect */
+}
+.about-container img {
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* soft shadow */
+  background: rgba(255, 255, 255, 0.7); /* optional for blending on bright bg */
+  padding: 8px; /* if you use background */
+  width: 500px;
+  height:400px !important;
+}
+.about-container::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(255, 255, 255, 0.5);
+  z-index: 0;
+}
+
+.about-container > * {
+  position: relative;
+  z-index: 1;
+}
+.blend-img {
+  background-color: rgba(255, 255, 255, 0.7); /* Soft white layer */
+  padding: 8px; /* Helps it breathe and separates from bg */
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1); /* Gentle depth */
+}
+.blend-img::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(to bottom right, rgba(255,255,255,0.2), transparent);
+  border-radius: 16px;
+  pointer-events: none;
+}
+.home-hero {
+  width: 100vw;
+  height: 100vh;
+  background-image: url('/images/bg-2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* optional for parallax feel */
+  margin-top: -20px !important;
+  margin-left: -20px !important;
+}
+

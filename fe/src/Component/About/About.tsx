@@ -101,7 +101,7 @@ export const About = () => {
                             <img
                                 src="/images/customer.jpg"
                                 alt="Customer Collaboration"
-                                className="img-fluid rounded shadow-lg"
+                                className="img-fluid rounded shadow-lg blend-img"
                                 style={{objectFit:"cover",height:"450px"}}
                             />
                         </div>
