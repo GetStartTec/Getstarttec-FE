@@ -1308,15 +1308,5 @@ body {
   border-radius: 16px;
   pointer-events: none;
 }
-.home-hero {
-  width: 100vw;
-  height: 100vh;
-  background-image: url('/images/bg-2.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed; /* optional for parallax feel */
-  margin-top: -20px !important;
-  margin-left: -20px !important;
-}
+
 
