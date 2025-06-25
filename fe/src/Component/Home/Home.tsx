@@ -56,11 +56,18 @@ export const Home = () => {
                             <p className="lead mt-3">
                                 At <strong>GetstartTec</strong>, we transform ideas into modern, scalable digital products — from e-commerce to education tech.
                             </p>
-                            <a href="#contact" className="btn btn-primary btn-lg mt-4">Start Your Project</a>
-                        </div>
+                            <a
+                                href="#"
+                                className="btn btn-primary btn-lg mt-4"
+                                data-bs-toggle="modal"
+                                data-bs-target="#collabModal"
+                            >
+                                Collaborate with Us
+                            </a>                        </div>
                     </div>
                 </div>
             </section>
+
 
             {/* About Us */}
             <section className="py-5 bg-white text-center">
@@ -77,7 +84,7 @@ export const Home = () => {
                 <div className="container">
                     <h3 className="text-center fw-bold mb-5">Our Process</h3>
                     <div className="row justify-content-center">
-                        {[ 
+                        {[
                             { title: "Discover Needs", description: "We start by understanding your vision, goals, and specific requirements. Through collaborative sessions, we uncover the core problem and ensure alignment with your business needs." },
                             { title: "Analyze & Align", description: "Once the requirements are clear, we dive deep to analyze dependencies, collect essential documents, and align our approach with your expectations." },
                             { title: "Build with Empathy", description: "We bring your vision to life with user-centric solutions. We design and develop keeping the end-user in mind—prioritizing usability, performance, and reliability." },
@@ -137,6 +144,258 @@ export const Home = () => {
                     <a href="/contact" className="btn btn-light btn-lg mt-3">Contact Us</a>
                 </div>
             </section>
+
+
+
+
+            {/* Collaborate Modal */}
+            <div
+                className="modal fade"
+                id="collabModal"
+                tabIndex={-1}
+                aria-labelledby="collabModalLabel"
+                aria-hidden="true"
+            >
+                <div
+                    className="modal-dialog modal-dialog-centered"
+                    style={{ maxWidth: "700px", width: "90%" }}
+                >
+                    <div className="modal-content">
+                        {/* Header */}
+                        <div className="modal-header border-0 pb-1">
+                            <h3
+                                className="modal-title fw-bold text-primary mb-2"
+                                id="collabModalLabel"
+                                style={{
+                                    marginTop: "10px",
+                                    marginLeft: "-450px",
+                                }}
+                            >
+                                Let`s Grow With Us
+                            </h3>
+                            <button
+                                type="button"
+                                className="btn-close position-absolute"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                                style={{
+                                    top: "20px",
+                                    right: "20px",
+                                    zIndex: 1055,
+                                    borderRadius: "8px",
+                                    padding: "6px",
+                                    transition: "border 0.2s ease",
+                                }}
+                                onMouseOver={(e) => {
+                                    e.currentTarget.style.border = "2px solid black";
+                                }}
+                                onMouseOut={(e) => {
+                                    e.currentTarget.style.border = "none";
+                                }}
+                            ></button>
+                        </div>
+
+                        {/* Body */}
+                        <div className="modal-body pt-0">
+                            <div className="row align-items-center">
+                                {/* Left Image */}
+                                <div className="col-md-6 mb-4 mb-md-0">
+                                    <img
+                                        src="/images/colab-us.jpeg"
+                                        alt="Collaboration Illustration"
+                                        className="img-fluid rounded shadow-sm"
+                                        style={{ maxHeight: "300px", objectFit: "cover" }}
+                                    />
+                                </div>
+
+                                {/* Right Content */}
+                                <div className="col-md-6" style={{ marginTop: "-60px" }}>
+                                    <h4 className="mb-2 text-dark">Bring Your Ideas to Life With Us</h4>
+                                    <p className="text-muted mb-3">
+                                        Whether you're a startup with a bold idea or a brand seeking a creative tech partner,
+                                        we’re here to turn your vision into reality. Let’s build something impactful together.
+                                    </p>
+                                    <div className="d-flex gap-3 mt-3 flex-wrap justify-content-center justify-content-md-start">
+                                        <a href="/contact" className="btn btn-outline-primary btn-lg px-4">
+                                            Contact Us
+                                        </a>
+                                        {/* Trigger Form Modal */}
+                                        <button
+                                            className="btn btn-primary btn-lg px-4"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#joinUsModal"
+                                        >
+                                            Join Us
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Join Us Form Modal */}
+            <div>
+                <div
+                    className="modal fade"
+                    id="joinUsModal"
+                    tabIndex={-1}
+                    aria-labelledby="joinUsModalLabel"
+                    aria-hidden="true"
+                >
+                    <div className="modal-dialog modal-dialog-centered" style={{ maxWidth: "600px", width: "90%" }}>
+                        <div className="modal-content p-3">
+                            <div className="modal-header">
+                                <h5 className="modal-title fw-bold" id="joinUsModalLabel">Drop an Idea</h5>
+                                <button
+                                    type="button"
+                                    className="btn-close position-absolute"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                    style={{
+                                        top: "20px",
+                                        right: "20px",
+                                        zIndex: 1055,
+                                        borderRadius: "8px",
+                                        padding: "6px",
+                                        transition: "border 0.2s ease",
+                                    }}
+                                    onMouseOver={(e) => {
+                                        e.currentTarget.style.border = "2px solid black";
+                                    }}
+                                    onMouseOut={(e) => {
+                                        e.currentTarget.style.border = "none";
+                                    }}
+                                ></button>                            </div>
+
+                            <div className="modal-body">
+                                <form
+                                    className="needs-validation"
+                                    noValidate
+                                    onSubmit={(e) => {
+                                        const form = e.currentTarget;
+                                        const scheduleCheck = document.getElementById("scheduleCallCheck") as HTMLInputElement;
+                                        const timeInput = document.getElementById("callTimeInput") as HTMLInputElement;
+
+                                        if (!form.checkValidity()) {
+                                            e.preventDefault();
+                                            e.stopPropagation();
+                                        }
+
+                                        if (scheduleCheck.checked && !timeInput.value) {
+                                            e.preventDefault();
+                                            e.stopPropagation();
+                                            timeInput.classList.add("is-invalid");
+                                        }
+
+                                        form.classList.add("was-validated");
+                                    }}
+                                >
+                                    <div className="row g-3">
+                                        <div className="col-md-6">
+                                            <label className="form-label">
+                                                Name <span className="text-danger">*</span>
+                                            </label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder="Enter your name"
+                                                required
+                                            />
+                                        </div>
+                                        <div className="col-md-6">
+                                            <label className="form-label">
+                                                Email ID <span className="text-danger">*</span>
+                                            </label>
+                                            <input
+                                                type="email"
+                                                className="form-control"
+                                                placeholder="Enter your email"
+                                                required
+                                            />
+                                        </div>
+                                        <div className="col-md-6">
+                                            <label className="form-label">
+                                                Mobile No <span className="text-danger">*</span>
+                                            </label>
+                                            <input
+                                                type="tel"
+                                                className="form-control"
+                                                placeholder="Enter mobile number"
+                                                required
+                                            />
+                                        </div>
+                                        <div className="col-md-6">
+                                            <label className="form-label">
+                                                Location <span className="text-danger">*</span>
+                                            </label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder="Your city/state"
+                                                required
+                                            />
+                                        </div>
+                                        <div className="col-12">
+                                            <label className="form-label">
+                                                Your Idea <span className="text-danger">*</span>
+                                            </label>
+                                            <textarea
+                                                className="form-control"
+                                                rows={3}
+                                                placeholder="Describe your idea..."
+                                                required
+                                            ></textarea>
+                                        </div>
+
+                                        {/* Checkbox */}
+                                        <div className="col-12">
+                                            <div className="form-check mt-2">
+                                                <input
+                                                    className="form-check-input"
+                                                    type="checkbox"
+                                                    id="scheduleCallCheck"
+                                                    style={{ width: "18px", height: "18px", cursor: "pointer" }}
+                                                    onChange={(e) => {
+                                                        const timeField = document.getElementById("callTimeField") as HTMLElement;
+                                                        timeField.style.display = e.target.checked ? "block" : "none";
+                                                    }}
+                                                />
+                                                <label className="form-check-label ms-2" htmlFor="scheduleCallCheck">
+                                                    Do you need to schedule a call?
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        {/* Conditional time input */}
+                                        <div className="col-12 mt-2" id="callTimeField" style={{ display: "none" }}>
+                                            <label className="form-label">
+                                                Your Convenient Time <span className="text-danger">*</span>
+                                            </label>
+                                            <input
+                                                type="time"
+                                                id="callTimeInput"
+                                                className="form-control"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="mt-4 text-end">
+                                        <button type="submit" className="btn btn-primary px-4">Drop</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
         </div>
     );
 };

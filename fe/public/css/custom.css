@@ -1,5 +1,14 @@
 /* Contact Page */
 
+html {
+  scroll-behavior: smooth;
+}
+
+input[type="checkbox"] {
+  appearance: auto;
+  -webkit-appearance: auto;
+}
+
 
 .contact-container {
   display: flex;
