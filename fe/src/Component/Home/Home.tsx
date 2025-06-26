@@ -1,7 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export const Home = () => {
+
+    useEffect(() => {
+        AOS.init({
+            duration: 1000, // animation duration
+            once: true      // animate only once
+        });
+    }, []);
+
     const [selectedProject, setSelectedProject] = useState<any>(null);
+
 
     const projects = [
         {
@@ -34,9 +45,56 @@ export const Home = () => {
         },
     ];
 
+    const steps = [
+        {
+            role: "Submitter",
+            icon: "🧑‍💼",
+            label: "INVOICE PROCESSING AGENT",
+            iconType: "ai",
+        },
+        {
+            role: "Analyst Verification",
+            icon: "⚙️",
+            label: "Routing",
+            iconType: "task",
+        },
+        {
+            role: "Approval",
+            icon: "⚙️",
+            label: "API Vendor Response",
+            iconType: "task",
+        },
+        {
+            role: "Payment Processing",
+            icon: "🧑‍💼",
+            label: "PAYMENT AGENT",
+            iconType: "ai",
+        },
+    ];
     const handleProjectClick = (project: any) => setSelectedProject(project);
     const closeModal = () => setSelectedProject(null);
-
+    const processSteps = [
+        {
+            title: "Discover Needs",
+            description:
+                "We start by understanding your vision, goals, and specific requirements. Through collaborative sessions, we uncover the core problem and ensure alignment with your business needs."
+        },
+        {
+            title: "Analyze & Align",
+            description:
+                "Once the requirements are clear, we dive deep to analyze dependencies, collect essential documents, and align our approach with your expectations."
+        },
+        {
+            title: "Build with Empathy",
+            description:
+                "We bring your vision to life with user-centric solutions. We design and develop keeping the end-user in mind—prioritizing usability, performance, and reliability."
+        },
+        {
+            title: "Launch & Deliver",
+            description:
+                "After rigorous testing and validation, we deploy the solution smoothly. We ensure your launch is successful and provide post-launch support if needed."
+        }
+    ];
     return (
         <div>
 
@@ -70,17 +128,50 @@ export const Home = () => {
 
 
             {/* About Us */}
-            <section className="py-5 bg-white text-center">
+
+            {/* <section className="py-5 bg-white text-center">
                 <div className="container">
                     <h2 className="fw-bold mb-3">About GetstartTec</h2>
                     <p className="lead mx-auto" style={{ maxWidth: "800px" }}>
                         We're a full-cycle software company driven by results and speed. Our agile team builds web platforms, mobile apps, and backend systems with a sharp eye on UX and scalability.
                     </p>
                 </div>
+            </section> */}
+            <section className="py-5 bg-white text-dark">
+                <div className="container text-center">
+                    <h2 className="display-5 fw-bold mb-4" style={{ color: "#007BFF" }}>
+                        GetstartTec ~ Building What's Next
+                    </h2>
+
+                    <p className="lead mx-auto mb-4" style={{ maxWidth: "750px" }}>
+                        We are a digital innovation company turning ideas into scalable software — fast.
+                        From web and mobile platforms to intelligent backends, we engineer with purpose and passion.
+                    </p>
+
+                    <div className="d-flex justify-content-center flex-wrap gap-3 mb-4">
+                        <div className="border border-primary text-primary px-4 py-2 rounded-pill fw-semibold">
+                            ⚡ Agile Development
+                        </div>
+                        <div className="border border-primary text-primary px-4 py-2 rounded-pill fw-semibold">
+                            📱 Web & Mobile Apps
+                        </div>
+                        <div className="border border-primary text-primary px-4 py-2 rounded-pill fw-semibold">
+                            ☁️ Scalable Architecture
+                        </div>
+                    </div>
+
+                    <a href="#projects" className="btn btn-primary px-4 py-2 fw-semibold mt-3">
+                        Explore Our Work →
+                    </a>
+                </div>
             </section>
 
+
+
+
             {/* Our Process Section */}
-            <section className="py-5 bg-light">
+
+            {/* <section className="py-5 bg-light">
                 <div className="container">
                     <h3 className="text-center fw-bold mb-5">Our Process</h3>
                     <div className="row justify-content-center">
@@ -104,7 +195,46 @@ export const Home = () => {
                         ))}
                     </div>
                 </div>
+            </section> */}
+            <section className="ai-flow-section py-5 bg-white">
+                <div className="container ai-flow-container d-flex align-items-end flex-wrap justify-content-center px-3">
+                    {steps.map((step, index) => (
+                        <React.Fragment key={index}>
+                            <div className="text-center me-4">
+                                <div className="ai-role-label mb-2">{step.role}</div>
+                                <div
+                                    className={`ai-step ${step.iconType}`}
+                                    data-aos="zoom-in"
+                                    data-aos-delay={index * 300}
+                                >
+                                    <div className="ai-icon">{step.icon}</div>
+                                    <div className="ai-label">{step.label}</div>
+                                </div>
+                            </div>
+
+                            {/* Connector */}
+                            {index < steps.length - 1 && (
+                                <div
+                                    className="ai-connector me-4"
+                                    data-aos="fade-right"
+                                    data-aos-delay={index * 300 + 200}
+                                >
+                                    <div className="pulse-bar" />
+                                </div>
+                            )}
+                        </React.Fragment>
+                    ))}
+
+                    <div
+                        className="ai-time-label ms-3"
+                        data-aos="fade-left"
+                        data-aos-delay={steps.length * 300}
+                    >
+                        ⏱ 1 Week
+                    </div>
+                </div>
             </section>
+
 
             {/* What Our Clients Say Section */}
             <section className="py-5 bg-light">

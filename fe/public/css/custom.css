@@ -1319,3 +1319,102 @@ body {
 }
 
 
+.industry-box {
+  min-width: 160px;
+  border-radius: 12px;
+  background-color: #f8f9fa;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.industry-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.ai-flow-section {
+  white-space: nowrap;
+}
+
+.ai-flow-container {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.ai-step {
+  background: #f4f4f4;
+  padding: 16px 20px;
+  border-radius: 16px;
+  min-width: 180px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.ai-step.ai {
+  background: #007bff;
+  color: white;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ai-step.task {
+  background: #f9f9f9;
+  color: #333;
+}
+
+.ai-icon {
+  font-size: 2rem;
+}
+
+.ai-label {
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.ai-role-label {
+  font-size: 0.7rem;
+  color: #888;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.ai-connector {
+  width: 60px;
+  height: 8px;
+  position: relative;
+}
+
+.pulse-bar {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #ff9900, #ffaa00, #ff9900);
+  border-radius: 4px;
+  animation: pulseFlow 2s infinite ease-in-out;
+}
+
+@keyframes pulseFlow {
+  0% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.8);
+  }
+  100% {
+    filter: brightness(1);
+  }
+}
+
+.ai-time-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #007bff;
+  white-space: nowrap;
+}
