@@ -1,19 +1,28 @@
-import React, { useState, useEffect } from "react";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import React, { useEffect, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+const stepDelay = 300;
+const connectorDelay = 200;
+const labelDelay = 300;
+const sectionBuffer = 800;
+
+type Step = {
+    label: string;
+    role: string;
+    icon: string;
+    iconType: string;
+};
 
 export const Home = () => {
+    const [showDiscoverSteps, setShowDiscoverSteps] = useState(true);
+    const [showAnalyze, setShowAnalyze] = useState(false);
+    const [showAnalyzeSteps, setShowAnalyzeSteps] = useState(true);
+    const [showBuildSteps, setShowBuildSteps] = useState(true);
+    const [showLaunchSteps, setShowLaunchSteps] = useState(true);
 
-    useEffect(() => {
-        AOS.init({
-            duration: 1000, // animation duration
-            once: true      // animate only once
-        });
-    }, []);
-
-    const [selectedProject, setSelectedProject] = useState<any>(null);
-
-
+    const [showBuild, setShowBuild] = useState(false);
+    const [showLaunch, setShowLaunch] = useState(false);
     const projects = [
         {
             title: "Learn Tech IT Solution",
@@ -45,59 +54,123 @@ export const Home = () => {
         },
     ];
 
-    const steps = [
-        {
-            role: "Submitter",
-            icon: "🧑‍💼",
-            label: "INVOICE PROCESSING AGENT",
-            iconType: "ai",
-        },
-        {
-            role: "Analyst Verification",
-            icon: "⚙️",
-            label: "Routing",
-            iconType: "task",
-        },
-        {
-            role: "Approval",
-            icon: "⚙️",
-            label: "API Vendor Response",
-            iconType: "task",
-        },
-        {
-            role: "Payment Processing",
-            icon: "🧑‍💼",
-            label: "PAYMENT AGENT",
-            iconType: "ai",
-        },
+    const discoverSteps: Step[] = [
+        { label: "Intro Meeting", role: "Client & BA", icon: "🤝", iconType: "task" },
+        { label: "Understand Goals", role: "BA Team", icon: "🎯", iconType: "ai" },
+        { label: "Identify Pain Points", role: "BA Team", icon: "🧩", iconType: "task" },
+        { label: "Define Stakeholders", role: "Project Manager", icon: "👥", iconType: "ai" },
+        { label: "Clarify KPIs", role: "Client & PM", icon: "📊", iconType: "task" }
     ];
+
+    const analyzeSteps: Step[] = [
+        { label: "Gather Requirements", role: "BA Team", icon: "📥", iconType: "task" },
+        { label: "Document Use Cases", role: "BA Team", icon: "📄", iconType: "ai" },
+        { label: "Tech Feasibility", role: "Tech Leads", icon: "🧪", iconType: "task" },
+        { label: "Finalize Scope", role: "Product Owners", icon: "📝", iconType: "ai" }
+    ];
+
+    const buildSteps: Step[] = [
+        { label: "Wireframe & UX Design", role: "UX Designer", icon: "🖌️", iconType: "task" },
+        { label: "UI Mockups", role: "UI Designer", icon: "🎨", iconType: "ai" },
+        { label: "Frontend Development", role: "Frontend Dev", icon: "💻", iconType: "task" },
+        { label: "Backend Integration", role: "Backend Dev", icon: "🧩", iconType: "ai" },
+        { label: "Internal QA & Iteration", role: "QA Team", icon: "✅", iconType: "task" }
+    ];
+
+    const launchSteps: Step[] = [
+        { label: "Final QA & Testing", role: "QA Team", icon: "🔍", iconType: "task" },
+        { label: "Staging Deployment", role: "DevOps", icon: "🚀", iconType: "ai" },
+        { label: "Client Review", role: "Client", icon: "👀", iconType: "task" },
+        { label: "Production Launch", role: "DevOps", icon: "🌐", iconType: "ai" },
+        { label: "Post-launch Support", role: "Support Team", icon: "🛠️", iconType: "task" }
+    ];
+
+    const [selectedProject, setSelectedProject] = useState<any>(null);
+
     const handleProjectClick = (project: any) => setSelectedProject(project);
     const closeModal = () => setSelectedProject(null);
-    const processSteps = [
-        {
-            title: "Discover Needs",
-            description:
-                "We start by understanding your vision, goals, and specific requirements. Through collaborative sessions, we uncover the core problem and ensure alignment with your business needs."
-        },
-        {
-            title: "Analyze & Align",
-            description:
-                "Once the requirements are clear, we dive deep to analyze dependencies, collect essential documents, and align our approach with your expectations."
-        },
-        {
-            title: "Build with Empathy",
-            description:
-                "We bring your vision to life with user-centric solutions. We design and develop keeping the end-user in mind—prioritizing usability, performance, and reliability."
-        },
-        {
-            title: "Launch & Deliver",
-            description:
-                "After rigorous testing and validation, we deploy the solution smoothly. We ensure your launch is successful and provide post-launch support if needed."
-        }
-    ];
-    return (
-        <div>
 
+    const getDuration = (steps: Step[]) =>
+        steps.length * stepDelay + (steps.length - 1) * connectorDelay + labelDelay + sectionBuffer;
+
+    const discoverDuration = getDuration(discoverSteps);
+    const analyzeDuration = getDuration(analyzeSteps);
+    const buildDuration = getDuration(buildSteps);
+
+    useEffect(() => {
+        AOS.init({ duration: 800, once: true, easing: "ease-out" });
+
+        const discoverTimer = setTimeout(() => setShowDiscoverSteps(false), discoverDuration);
+        const analyzeStartTimer = setTimeout(() => setShowAnalyze(true), discoverDuration);
+        const analyzeEndTimer = setTimeout(() => setShowAnalyzeSteps(false), discoverDuration + analyzeDuration);
+        const buildStartTimer = setTimeout(() => setShowBuild(true), discoverDuration + analyzeDuration);
+        const buildEndTimer = setTimeout(() => setShowBuildSteps(false), discoverDuration + analyzeDuration + buildDuration);
+        const launchStartTimer = setTimeout(() => setShowLaunch(true), discoverDuration + analyzeDuration + buildDuration);
+        const launchEndTimer = setTimeout(() => setShowLaunchSteps(false), discoverDuration + analyzeDuration + buildDuration + getDuration(launchSteps));
+
+        return () => {
+            clearTimeout(discoverTimer);
+            clearTimeout(analyzeStartTimer);
+            clearTimeout(analyzeEndTimer);
+            clearTimeout(buildStartTimer);
+            clearTimeout(buildEndTimer);
+            clearTimeout(launchStartTimer);
+            clearTimeout(launchEndTimer);
+        };
+    }, []);
+
+
+
+    const renderSteps = (
+        steps: Step[],
+        heading: string,
+        time: string,
+        baseDelay: number
+    ) => (
+        <div
+            className="ai-step-block"
+            data-aos="fade-up"
+            data-aos-delay={baseDelay}
+        >
+            <h3 className="text-center fw-bold mb-4">{heading}</h3>
+            <div className="ai-flow-container">
+                {steps.map((step, index) => (
+                    <React.Fragment key={index}>
+                        <div className="text-center">  {/* reduce from me-4 */}
+                            <div className="ai-role-label mb-2">{step.role}</div>
+                            <div
+                                className={`ai-step ${step.iconType}`}
+                                data-aos="zoom-in"
+                                data-aos-delay={baseDelay + index * stepDelay}
+                            >
+                                <div className="ai-icon">{step.icon}</div>
+                                <div className="ai-label">{step.label}</div>
+                            </div>
+                        </div>
+                        {index < steps.length - 1 && (
+                            <div
+                                className="ai-connector me-4"
+                                data-aos="fade-right"
+                                data-aos-delay={baseDelay + index * stepDelay + connectorDelay}
+                            >
+                                <div className="pulse-bar" />
+                            </div>
+                        )}
+                    </React.Fragment>
+                ))}
+                <div
+                    className="ai-time-label ms-3"
+                    data-aos="fade-left"
+                    data-aos-delay={baseDelay + steps.length * stepDelay}
+                >
+                    ⏱ {time}
+                </div>
+            </div>
+        </div>
+    );
+
+    return (
+        <>
             {/* Hero Section */}
             <section className="text-white d-flex align-items-center" style={{
                 backgroundImage: 'url("/assets/hero-bg.jpg")',
@@ -166,12 +239,9 @@ export const Home = () => {
                 </div>
             </section>
 
+            {/* Process Section */}
 
-
-
-            {/* Our Process Section */}
-
-            {/* <section className="py-5 bg-light">
+              {/* <section className="py-5 bg-light">
                 <div className="container">
                     <h3 className="text-center fw-bold mb-5">Our Process</h3>
                     <div className="row justify-content-center">
@@ -196,44 +266,83 @@ export const Home = () => {
                     </div>
                 </div>
             </section> */}
-            <section className="ai-flow-section py-5 bg-white">
-                <div className="container ai-flow-container d-flex align-items-end flex-wrap justify-content-center px-3">
-                    {steps.map((step, index) => (
-                        <React.Fragment key={index}>
-                            <div className="text-center me-4">
-                                <div className="ai-role-label mb-2">{step.role}</div>
-                                <div
-                                    className={`ai-step ${step.iconType}`}
-                                    data-aos="zoom-in"
-                                    data-aos-delay={index * 300}
-                                >
-                                    <div className="ai-icon">{step.icon}</div>
-                                    <div className="ai-label">{step.label}</div>
-                                </div>
+
+            <div className="ai-flow-wrapper">
+                {/* Discover */}
+                <div className="ai-flow-item">
+                    {showDiscoverSteps ? (
+                        renderSteps(discoverSteps, "Discover Needs", "2 Days", 0)
+                    ) : (
+                        <div className="circular-summary position-relative text-center">
+                            <div className="circle-content">
+                                <h5 className="fw-bold mb-2">Discover Needs</h5>
+                                <p className="mb-0">
+                                    We start by understanding your vision, goals, and specific requirements.
+                                    Through collaborative sessions, we uncover the core problem and ensure alignment with your business needs.
+                                </p>
                             </div>
-
-                            {/* Connector */}
-                            {index < steps.length - 1 && (
-                                <div
-                                    className="ai-connector me-4"
-                                    data-aos="fade-right"
-                                    data-aos-delay={index * 300 + 200}
-                                >
-                                    <div className="pulse-bar" />
-                                </div>
-                            )}
-                        </React.Fragment>
-                    ))}
-
-                    <div
-                        className="ai-time-label ms-3"
-                        data-aos="fade-left"
-                        data-aos-delay={steps.length * 300}
-                    >
-                        ⏱ 1 Week
-                    </div>
+                            <div className="rotating-arrow-icon"></div>
+                        </div>
+                    )}
                 </div>
-            </section>
+
+                {/* Analyze */}
+                {showAnalyze && (
+                    <div className="ai-flow-item">
+                        {showAnalyzeSteps ? (
+                            renderSteps(analyzeSteps, "Analyze & Align", "2 Days", 0)
+                        ) : (
+                            <div className="circular-summary position-relative text-center">
+                                <div className="circle-content">
+                                    <h5 className="fw-bold mb-2">Analyze & Align</h5>
+                                    <p className="mb-0">
+                                        We gather detailed requirements, assess feasibility, and finalize the scope aligned with business needs.
+                                    </p>
+                                </div>
+                                <div className="rotating-arrow-icon"></div>
+                            </div>
+                        )}
+                    </div>
+                )}
+
+                {/* Build */}
+                {showBuild && (
+                    <div className="ai-flow-item">
+                        {showBuildSteps ? (
+                            renderSteps(buildSteps, "Build & Deliver", "4 Days", 0)
+                        ) : (
+                            <div className="circular-summary position-relative text-center">
+                                <div className="circle-content">
+                                    <h5 className="fw-bold mb-2">Build & Deliver</h5>
+                                    <p className="mb-0">
+                                        Our designers and developers bring the solution to life through UI/UX and backend integration with ongoing QA.
+                                    </p>
+                                </div>
+                                <div className="rotating-arrow-icon"></div>
+                            </div>
+                        )}
+                    </div>
+                )}
+
+                {/* Launch */}
+                {showLaunch && (
+                    <div className="ai-flow-item">
+                        {showLaunchSteps ? (
+                            renderSteps(launchSteps, "Launch & Deliver", "1 Day", 0)
+                        ) : (
+                            <div className="circular-summary position-relative text-center">
+                                <div className="circle-content">
+                                    <h5 className="fw-bold mb-2">Launch & Deliver</h5>
+                                    <p className="mb-0">
+                                        Once tested and approved, we go live with your product and provide support to ensure success.
+                                    </p>
+                                </div>
+                                <div className="rotating-arrow-icon"></div>
+                            </div>
+                        )}
+                    </div>
+                )}
+            </div>
 
 
             {/* What Our Clients Say Section */}
@@ -525,7 +634,7 @@ export const Home = () => {
 
 
 
-
-        </div>
+        </>
     );
+
 };
