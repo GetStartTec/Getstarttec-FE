@@ -42,11 +42,11 @@ export const Header = () => {
 
     return (
         <nav
-            className={"navbar navbar-expand-lg fixed-top"}
+            className={"navbar navbar-expand-lg fixed-top header-background"}
         >
             <div className="container-fluid fs-5">
                 <div className="navbar-brand d-flex align-items-center" onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
-                    {/* <img src="/path/to/logo.png" alt="Logo" height="30" className="me-2" /> */}
+                    <img src="/images/getStartTec.png" alt="Logo" height="60" className="me-2" />
                     <div className="d-flex flex-column">
                         <span className="fw-bold fs-5">Get Start Tec</span>
                         <span className="text-muted" style={{ fontSize: "12px" }}><i>From Idea to Innovation</i></span>

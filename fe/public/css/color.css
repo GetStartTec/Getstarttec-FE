@@ -1,0 +1,22 @@
+.white{
+    color: #FFFFFF;
+}
+.peach {
+    color : #FEF9F2;
+}
+.pink{
+    color : #EEA1FB;
+}
+.blue {
+    color : #AAA1FA;
+}
+.pink-blue{
+    color:#CE9AF7;
+}
+.purple{
+    color:#987CDD;
+}
+
+.header-background {
+    background: linear-gradient(to right, #EEA1FB,#AAA1FA,#CE9AF7,#987CDD) !important;
+}
