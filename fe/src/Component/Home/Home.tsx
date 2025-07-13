@@ -1,8 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+const stepDelay = 300;
+const connectorDelay = 200;
+const labelDelay = 300;
+const sectionBuffer = 800;
+
+type Step = {
+    label: string;
+    role: string;
+    icon: string;
+    iconType: string;
+};
 
 export const Home = () => {
-    const [selectedProject, setSelectedProject] = useState<any>(null);
+    const [showDiscoverSteps, setShowDiscoverSteps] = useState(true);
+    const [showAnalyze, setShowAnalyze] = useState(false);
+    const [showAnalyzeSteps, setShowAnalyzeSteps] = useState(true);
+    const [showBuildSteps, setShowBuildSteps] = useState(true);
+    const [showLaunchSteps, setShowLaunchSteps] = useState(true);
 
+    const [showBuild, setShowBuild] = useState(false);
+    const [showLaunch, setShowLaunch] = useState(false);
     const projects = [
         {
             title: "Learn Tech IT Solution",
@@ -34,12 +54,123 @@ export const Home = () => {
         },
     ];
 
+    const discoverSteps: Step[] = [
+        { label: "Intro Meeting", role: "Client & BA", icon: "🤝", iconType: "task" },
+        { label: "Understand Goals", role: "BA Team", icon: "🎯", iconType: "ai" },
+        { label: "Identify Pain Points", role: "BA Team", icon: "🧩", iconType: "task" },
+        { label: "Define Stakeholders", role: "Project Manager", icon: "👥", iconType: "ai" },
+        { label: "Clarify KPIs", role: "Client & PM", icon: "📊", iconType: "task" }
+    ];
+
+    const analyzeSteps: Step[] = [
+        { label: "Gather Requirements", role: "BA Team", icon: "📥", iconType: "task" },
+        { label: "Document Use Cases", role: "BA Team", icon: "📄", iconType: "ai" },
+        { label: "Tech Feasibility", role: "Tech Leads", icon: "🧪", iconType: "task" },
+        { label: "Finalize Scope", role: "Product Owners", icon: "📝", iconType: "ai" }
+    ];
+
+    const buildSteps: Step[] = [
+        { label: "Wireframe & UX Design", role: "UX Designer", icon: "🖌️", iconType: "task" },
+        { label: "UI Mockups", role: "UI Designer", icon: "🎨", iconType: "ai" },
+        { label: "Frontend Development", role: "Frontend Dev", icon: "💻", iconType: "task" },
+        { label: "Backend Integration", role: "Backend Dev", icon: "🧩", iconType: "ai" },
+        { label: "Internal QA & Iteration", role: "QA Team", icon: "✅", iconType: "task" }
+    ];
+
+    const launchSteps: Step[] = [
+        { label: "Final QA & Testing", role: "QA Team", icon: "🔍", iconType: "task" },
+        { label: "Staging Deployment", role: "DevOps", icon: "🚀", iconType: "ai" },
+        { label: "Client Review", role: "Client", icon: "👀", iconType: "task" },
+        { label: "Production Launch", role: "DevOps", icon: "🌐", iconType: "ai" },
+        { label: "Post-launch Support", role: "Support Team", icon: "🛠️", iconType: "task" }
+    ];
+
+    const [selectedProject, setSelectedProject] = useState<any>(null);
+
     const handleProjectClick = (project: any) => setSelectedProject(project);
     const closeModal = () => setSelectedProject(null);
 
-    return (
-        <div>
+    const getDuration = (steps: Step[]) =>
+        steps.length * stepDelay + (steps.length - 1) * connectorDelay + labelDelay + sectionBuffer;
 
+    const discoverDuration = getDuration(discoverSteps);
+    const analyzeDuration = getDuration(analyzeSteps);
+    const buildDuration = getDuration(buildSteps);
+
+    useEffect(() => {
+        AOS.init({ duration: 800, once: true, easing: "ease-out" });
+
+        const discoverTimer = setTimeout(() => setShowDiscoverSteps(false), discoverDuration);
+        const analyzeStartTimer = setTimeout(() => setShowAnalyze(true), discoverDuration);
+        const analyzeEndTimer = setTimeout(() => setShowAnalyzeSteps(false), discoverDuration + analyzeDuration);
+        const buildStartTimer = setTimeout(() => setShowBuild(true), discoverDuration + analyzeDuration);
+        const buildEndTimer = setTimeout(() => setShowBuildSteps(false), discoverDuration + analyzeDuration + buildDuration);
+        const launchStartTimer = setTimeout(() => setShowLaunch(true), discoverDuration + analyzeDuration + buildDuration);
+        const launchEndTimer = setTimeout(() => setShowLaunchSteps(false), discoverDuration + analyzeDuration + buildDuration + getDuration(launchSteps));
+
+        return () => {
+            clearTimeout(discoverTimer);
+            clearTimeout(analyzeStartTimer);
+            clearTimeout(analyzeEndTimer);
+            clearTimeout(buildStartTimer);
+            clearTimeout(buildEndTimer);
+            clearTimeout(launchStartTimer);
+            clearTimeout(launchEndTimer);
+        };
+    }, []);
+
+
+
+    const renderSteps = (
+        steps: Step[],
+        heading: string,
+        time: string,
+        baseDelay: number
+    ) => (
+        <div
+            className="ai-step-block"
+            data-aos="fade-up"
+            data-aos-delay={baseDelay}
+        >
+            <h3 className="text-center fw-bold mb-4">{heading}</h3>
+            <div className="ai-flow-container">
+                {steps.map((step, index) => (
+                    <React.Fragment key={index}>
+                        <div className="text-center">  {/* reduce from me-4 */}
+                            <div className="ai-role-label mb-2">{step.role}</div>
+                            <div
+                                className={`ai-step ${step.iconType}`}
+                                data-aos="zoom-in"
+                                data-aos-delay={baseDelay + index * stepDelay}
+                            >
+                                <div className="ai-icon">{step.icon}</div>
+                                <div className="ai-label">{step.label}</div>
+                            </div>
+                        </div>
+                        {index < steps.length - 1 && (
+                            <div
+                                className="ai-connector me-4"
+                                data-aos="fade-right"
+                                data-aos-delay={baseDelay + index * stepDelay + connectorDelay}
+                            >
+                                <div className="pulse-bar" />
+                            </div>
+                        )}
+                    </React.Fragment>
+                ))}
+                <div
+                    className="ai-time-label ms-3"
+                    data-aos="fade-left"
+                    data-aos-delay={baseDelay + steps.length * stepDelay}
+                >
+                    ⏱ {time}
+                </div>
+            </div>
+        </div>
+    );
+
+    return (
+        <>
             {/* Hero Section */}
             <section className="text-white d-flex align-items-center" style={{
                 backgroundImage: 'url("/assets/hero-bg.jpg")',
@@ -56,28 +187,65 @@ export const Home = () => {
                             <p className="lead mt-3">
                                 At <strong>GetstartTec</strong>, we transform ideas into modern, scalable digital products — from e-commerce to education tech.
                             </p>
-                            <a href="#contact" className="btn btn-primary btn-lg mt-4">Start Your Project</a>
-                        </div>
+                            <a
+                                href="#"
+                                className="btn btn-primary btn-lg mt-4"
+                                data-bs-toggle="modal"
+                                data-bs-target="#collabModal"
+                            >
+                                Collaborate with Us
+                            </a>                        </div>
                     </div>
                 </div>
             </section>
 
+
             {/* About Us */}
-            <section className="py-5 bg-white text-center">
+
+            {/* <section className="py-5 bg-white text-center">
                 <div className="container">
                     <h2 className="fw-bold mb-3">About GetstartTec</h2>
                     <p className="lead mx-auto" style={{ maxWidth: "800px" }}>
                         We're a full-cycle software company driven by results and speed. Our agile team builds web platforms, mobile apps, and backend systems with a sharp eye on UX and scalability.
                     </p>
                 </div>
+            </section> */}
+            <section className="py-5 bg-white text-dark">
+                <div className="container text-center">
+                    <h2 className="display-5 fw-bold mb-4" style={{ color: "#007BFF" }}>
+                        GetstartTec ~ Building What's Next
+                    </h2>
+
+                    <p className="lead mx-auto mb-4" style={{ maxWidth: "750px" }}>
+                        We are a digital innovation company turning ideas into scalable software — fast.
+                        From web and mobile platforms to intelligent backends, we engineer with purpose and passion.
+                    </p>
+
+                    <div className="d-flex justify-content-center flex-wrap gap-3 mb-4">
+                        <div className="border border-primary text-primary px-4 py-2 rounded-pill fw-semibold">
+                            ⚡ Agile Development
+                        </div>
+                        <div className="border border-primary text-primary px-4 py-2 rounded-pill fw-semibold">
+                            📱 Web & Mobile Apps
+                        </div>
+                        <div className="border border-primary text-primary px-4 py-2 rounded-pill fw-semibold">
+                            ☁️ Scalable Architecture
+                        </div>
+                    </div>
+
+                    <a href="#projects" className="btn btn-primary px-4 py-2 fw-semibold mt-3">
+                        Explore Our Work →
+                    </a>
+                </div>
             </section>
 
-            {/* Our Process Section */}
-            <section className="py-5 bg-light">
+            {/* Process Section */}
+
+              {/* <section className="py-5 bg-light">
                 <div className="container">
                     <h3 className="text-center fw-bold mb-5">Our Process</h3>
                     <div className="row justify-content-center">
-                        {[ 
+                        {[
                             { title: "Discover Needs", description: "We start by understanding your vision, goals, and specific requirements. Through collaborative sessions, we uncover the core problem and ensure alignment with your business needs." },
                             { title: "Analyze & Align", description: "Once the requirements are clear, we dive deep to analyze dependencies, collect essential documents, and align our approach with your expectations." },
                             { title: "Build with Empathy", description: "We bring your vision to life with user-centric solutions. We design and develop keeping the end-user in mind—prioritizing usability, performance, and reliability." },
@@ -97,7 +265,85 @@ export const Home = () => {
                         ))}
                     </div>
                 </div>
-            </section>
+            </section> */}
+
+            <div className="ai-flow-wrapper">
+                {/* Discover */}
+                <div className="ai-flow-item">
+                    {showDiscoverSteps ? (
+                        renderSteps(discoverSteps, "Discover Needs", "2 Days", 0)
+                    ) : (
+                        <div className="circular-summary position-relative text-center">
+                            <div className="circle-content">
+                                <h5 className="fw-bold mb-2">Discover Needs</h5>
+                                <p className="mb-0">
+                                    We start by understanding your vision, goals, and specific requirements.
+                                    Through collaborative sessions, we uncover the core problem and ensure alignment with your business needs.
+                                </p>
+                            </div>
+                            <div className="rotating-arrow-icon"></div>
+                        </div>
+                    )}
+                </div>
+
+                {/* Analyze */}
+                {showAnalyze && (
+                    <div className="ai-flow-item">
+                        {showAnalyzeSteps ? (
+                            renderSteps(analyzeSteps, "Analyze & Align", "2 Days", 0)
+                        ) : (
+                            <div className="circular-summary position-relative text-center">
+                                <div className="circle-content">
+                                    <h5 className="fw-bold mb-2">Analyze & Align</h5>
+                                    <p className="mb-0">
+                                        We gather detailed requirements, assess feasibility, and finalize the scope aligned with business needs.
+                                    </p>
+                                </div>
+                                <div className="rotating-arrow-icon"></div>
+                            </div>
+                        )}
+                    </div>
+                )}
+
+                {/* Build */}
+                {showBuild && (
+                    <div className="ai-flow-item">
+                        {showBuildSteps ? (
+                            renderSteps(buildSteps, "Build & Deliver", "4 Days", 0)
+                        ) : (
+                            <div className="circular-summary position-relative text-center">
+                                <div className="circle-content">
+                                    <h5 className="fw-bold mb-2">Build & Deliver</h5>
+                                    <p className="mb-0">
+                                        Our designers and developers bring the solution to life through UI/UX and backend integration with ongoing QA.
+                                    </p>
+                                </div>
+                                <div className="rotating-arrow-icon"></div>
+                            </div>
+                        )}
+                    </div>
+                )}
+
+                {/* Launch */}
+                {showLaunch && (
+                    <div className="ai-flow-item">
+                        {showLaunchSteps ? (
+                            renderSteps(launchSteps, "Launch & Deliver", "1 Day", 0)
+                        ) : (
+                            <div className="circular-summary position-relative text-center">
+                                <div className="circle-content">
+                                    <h5 className="fw-bold mb-2">Launch & Deliver</h5>
+                                    <p className="mb-0">
+                                        Once tested and approved, we go live with your product and provide support to ensure success.
+                                    </p>
+                                </div>
+                                <div className="rotating-arrow-icon"></div>
+                            </div>
+                        )}
+                    </div>
+                )}
+            </div>
+
 
             {/* What Our Clients Say Section */}
             <section className="py-5 bg-light">
@@ -137,6 +383,258 @@ export const Home = () => {
                     <a href="/contact" className="btn btn-light btn-lg mt-3">Contact Us</a>
                 </div>
             </section>
-        </div>
+
+
+
+
+            {/* Collaborate Modal */}
+            <div
+                className="modal fade"
+                id="collabModal"
+                tabIndex={-1}
+                aria-labelledby="collabModalLabel"
+                aria-hidden="true"
+            >
+                <div
+                    className="modal-dialog modal-dialog-centered"
+                    style={{ maxWidth: "700px", width: "90%" }}
+                >
+                    <div className="modal-content">
+                        {/* Header */}
+                        <div className="modal-header border-0 pb-1">
+                            <h3
+                                className="modal-title fw-bold text-primary mb-2"
+                                id="collabModalLabel"
+                                style={{
+                                    marginTop: "10px",
+                                    marginLeft: "-450px",
+                                }}
+                            >
+                                Let`s Grow With Us
+                            </h3>
+                            <button
+                                type="button"
+                                className="btn-close position-absolute"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                                style={{
+                                    top: "20px",
+                                    right: "20px",
+                                    zIndex: 1055,
+                                    borderRadius: "8px",
+                                    padding: "6px",
+                                    transition: "border 0.2s ease",
+                                }}
+                                onMouseOver={(e) => {
+                                    e.currentTarget.style.border = "2px solid black";
+                                }}
+                                onMouseOut={(e) => {
+                                    e.currentTarget.style.border = "none";
+                                }}
+                            ></button>
+                        </div>
+
+                        {/* Body */}
+                        <div className="modal-body pt-0">
+                            <div className="row align-items-center">
+                                {/* Left Image */}
+                                <div className="col-md-6 mb-4 mb-md-0">
+                                    <img
+                                        src="/images/colab-us.jpeg"
+                                        alt="Collaboration Illustration"
+                                        className="img-fluid rounded shadow-sm"
+                                        style={{ maxHeight: "300px", objectFit: "cover" }}
+                                    />
+                                </div>
+
+                                {/* Right Content */}
+                                <div className="col-md-6" style={{ marginTop: "-60px" }}>
+                                    <h4 className="mb-2 text-dark">Bring Your Ideas to Life With Us</h4>
+                                    <p className="text-muted mb-3">
+                                        Whether you're a startup with a bold idea or a brand seeking a creative tech partner,
+                                        we’re here to turn your vision into reality. Let’s build something impactful together.
+                                    </p>
+                                    <div className="d-flex gap-3 mt-3 flex-wrap justify-content-center justify-content-md-start">
+                                        <a href="/contact" className="btn btn-outline-primary btn-lg px-4">
+                                            Contact Us
+                                        </a>
+                                        {/* Trigger Form Modal */}
+                                        <button
+                                            className="btn btn-primary btn-lg px-4"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#joinUsModal"
+                                        >
+                                            Join Us
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Join Us Form Modal */}
+            <div>
+                <div
+                    className="modal fade"
+                    id="joinUsModal"
+                    tabIndex={-1}
+                    aria-labelledby="joinUsModalLabel"
+                    aria-hidden="true"
+                >
+                    <div className="modal-dialog modal-dialog-centered" style={{ maxWidth: "600px", width: "90%" }}>
+                        <div className="modal-content p-3">
+                            <div className="modal-header">
+                                <h5 className="modal-title fw-bold" id="joinUsModalLabel">Drop an Idea</h5>
+                                <button
+                                    type="button"
+                                    className="btn-close position-absolute"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                    style={{
+                                        top: "20px",
+                                        right: "20px",
+                                        zIndex: 1055,
+                                        borderRadius: "8px",
+                                        padding: "6px",
+                                        transition: "border 0.2s ease",
+                                    }}
+                                    onMouseOver={(e) => {
+                                        e.currentTarget.style.border = "2px solid black";
+                                    }}
+                                    onMouseOut={(e) => {
+                                        e.currentTarget.style.border = "none";
+                                    }}
+                                ></button>                            </div>
+
+                            <div className="modal-body">
+                                <form
+                                    className="needs-validation"
+                                    noValidate
+                                    onSubmit={(e) => {
+                                        const form = e.currentTarget;
+                                        const scheduleCheck = document.getElementById("scheduleCallCheck") as HTMLInputElement;
+                                        const timeInput = document.getElementById("callTimeInput") as HTMLInputElement;
+
+                                        if (!form.checkValidity()) {
+                                            e.preventDefault();
+                                            e.stopPropagation();
+                                        }
+
+                                        if (scheduleCheck.checked && !timeInput.value) {
+                                            e.preventDefault();
+                                            e.stopPropagation();
+                                            timeInput.classList.add("is-invalid");
+                                        }
+
+                                        form.classList.add("was-validated");
+                                    }}
+                                >
+                                    <div className="row g-3">
+                                        <div className="col-md-6">
+                                            <label className="form-label">
+                                                Name <span className="text-danger">*</span>
+                                            </label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder="Enter your name"
+                                                required
+                                            />
+                                        </div>
+                                        <div className="col-md-6">
+                                            <label className="form-label">
+                                                Email ID <span className="text-danger">*</span>
+                                            </label>
+                                            <input
+                                                type="email"
+                                                className="form-control"
+                                                placeholder="Enter your email"
+                                                required
+                                            />
+                                        </div>
+                                        <div className="col-md-6">
+                                            <label className="form-label">
+                                                Mobile No <span className="text-danger">*</span>
+                                            </label>
+                                            <input
+                                                type="tel"
+                                                className="form-control"
+                                                placeholder="Enter mobile number"
+                                                required
+                                            />
+                                        </div>
+                                        <div className="col-md-6">
+                                            <label className="form-label">
+                                                Location <span className="text-danger">*</span>
+                                            </label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder="Your city/state"
+                                                required
+                                            />
+                                        </div>
+                                        <div className="col-12">
+                                            <label className="form-label">
+                                                Your Idea <span className="text-danger">*</span>
+                                            </label>
+                                            <textarea
+                                                className="form-control"
+                                                rows={3}
+                                                placeholder="Describe your idea..."
+                                                required
+                                            ></textarea>
+                                        </div>
+
+                                        {/* Checkbox */}
+                                        <div className="col-12">
+                                            <div className="form-check mt-2">
+                                                <input
+                                                    className="form-check-input"
+                                                    type="checkbox"
+                                                    id="scheduleCallCheck"
+                                                    style={{ width: "18px", height: "18px", cursor: "pointer" }}
+                                                    onChange={(e) => {
+                                                        const timeField = document.getElementById("callTimeField") as HTMLElement;
+                                                        timeField.style.display = e.target.checked ? "block" : "none";
+                                                    }}
+                                                />
+                                                <label className="form-check-label ms-2" htmlFor="scheduleCallCheck">
+                                                    Do you need to schedule a call?
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        {/* Conditional time input */}
+                                        <div className="col-12 mt-2" id="callTimeField" style={{ display: "none" }}>
+                                            <label className="form-label">
+                                                Your Convenient Time <span className="text-danger">*</span>
+                                            </label>
+                                            <input
+                                                type="time"
+                                                id="callTimeInput"
+                                                className="form-control"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="mt-4 text-end">
+                                        <button type="submit" className="btn btn-primary px-4">Drop</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+        </>
     );
+
 };
