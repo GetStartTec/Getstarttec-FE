@@ -48,8 +48,8 @@ export const Header = () => {
                 <div className="navbar-brand d-flex align-items-center" onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
                     <img src="/images/getStartTec.png" alt="Logo" height="60" className="me-2" />
                     <div className="d-flex flex-column">
-                        <span className="fw-bold fs-5">Get Start Tec</span>
-                        <span className="text-muted" style={{ fontSize: "12px" }}><i>From Idea to Innovation</i></span>
+                        <span className="fw-bold fs-5 nav-color">Get Start Tec</span>
+                        <span className="text-muted" style={{ fontSize: "12px" }}><i className="nav-sub-color">From Idea to Innovation</i></span>
                     </div>
                 </div>
 
@@ -65,7 +65,7 @@ export const Header = () => {
                 </button>
 
                 <div className={`collapse navbar-collapse ${isOpen ? "show" : ""}`} id="navbarNav">
-                    <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <ul className="navbar-nav nav-color ms-auto mb-2 mb-lg-0">
                         {[ 
                             { path: "/", label: "Home" },
                             { path: "/about-us", label: "About Us" },
@@ -74,7 +74,7 @@ export const Header = () => {
                             { path: "/contact-us", label: "Contact Us" },
                             { path: "/contact-us#quote", className: "get-quote", label: "Get a Quote", isButton: true }
                         ].map(({ path, label, isButton }) => (
-                            <li className="nav-item me-4 fs-5" key={path}>
+                            <li className="nav-item nav-color me-4 fs-5" key={path}>
                                 {isButton ? (
                                     <button
                                         className="btn btn-primary px-4 py-2"
@@ -84,7 +84,7 @@ export const Header = () => {
                                     </button>
                                 ) : (
                                     <a
-                                        className={`nav-link ${location.pathname === path ? "active" : ""}`}
+                                        className={`nav-link nav-color ${location.pathname === path ? "active" : ""}`}
                                         style={{ cursor: "pointer" }}
                                         onClick={() => handleLinkClick(path)}
                                     >
