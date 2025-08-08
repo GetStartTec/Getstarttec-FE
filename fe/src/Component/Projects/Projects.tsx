@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { CheckCircle } from "lucide-react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 export const Projects = () => {
     const [selectedProject, setSelectedProject] = useState<any>(null);
@@ -37,62 +37,35 @@ export const Projects = () => {
     ];
 
     const testimonials = [
-        {
-            name: "Aarav Mehta",
-            role: "CEO, Mehta Enterprises",
-            feedback:
-                "Working with this team was an absolute pleasure. They delivered beyond expectations, on time and with great attention to detail.",
-            image: "https://randomuser.me/api/portraits/men/32.jpg"
-        },
-        {
-            name: "Priya Sharma",
-            role: "Marketing Head, Brandify",
-            feedback:
-                "The professionalism and creativity they brought to the table transformed our project completely. Highly recommended!",
-            image: "https://randomuser.me/api/portraits/women/44.jpg"
-        },
-        {
-            name: "Karthik Iyer",
-            role: "Founder, Iyer Innovations",
-            feedback:
-                "Exceptional work ethic and excellent communication throughout the project. Will definitely collaborate again.",
-            image: "https://randomuser.me/api/portraits/men/65.jpg"
-        },
-        {
-            name: "Ananya Gupta",
-            role: "Product Manager, TechSphere",
-            feedback:
-                "From concept to execution, everything was handled perfectly. Truly impressed by their expertise.",
-            image: "https://randomuser.me/api/portraits/women/68.jpg"
-        }
-    ];
-
-    const steps = [
-        {
-            title: "Understanding Your Needs",
-            description:
-                "We start by listening carefully to your goals, challenges, and vision to create the right plan.",
-            icon: <CheckCircle className="w-10 h-10 text-blue-500" />
-        },
-        {
-            title: "Planning & Strategy",
-            description:
-                "We design a custom roadmap that ensures efficiency and success at every stage of execution.",
-            icon: <CheckCircle className="w-10 h-10 text-green-500" />
-        },
-        {
-            title: "Execution & Development",
-            description:
-                "Our team implements the plan with precision, keeping you updated at every step.",
-            icon: <CheckCircle className="w-10 h-10 text-purple-500" />
-        },
-        {
-            title: "Final Delivery & Support",
-            description:
-                "We deliver on time and provide continuous support to ensure smooth operations.",
-            icon: <CheckCircle className="w-10 h-10 text-orange-500" />
-        }
-    ];
+  {
+    name: "Aarav Mehta",
+    role: "CEO, Mehta Enterprises",
+    feedback:
+      "Working with this team was an absolute pleasure. They delivered beyond expectations, on time and with great attention to detail.",
+    image: "https://randomuser.me/api/portraits/men/32.jpg"
+  },
+  {
+    name: "Priya Sharma",
+    role: "Marketing Head, Brandify",
+    feedback:
+      "The professionalism and creativity they brought to the table transformed our project completely. Highly recommended!",
+    image: "https://randomuser.me/api/portraits/women/44.jpg"
+  },
+  {
+    name: "Karthik Iyer",
+    role: "Founder, Iyer Innovations",
+    feedback:
+      "Exceptional work ethic and excellent communication throughout the project. Will definitely collaborate again.",
+    image: "https://randomuser.me/api/portraits/men/65.jpg"
+  },
+  {
+    name: "Ananya Gupta",
+    role: "Product Manager, TechSphere",
+    feedback:
+      "From concept to execution, everything was handled perfectly. Truly impressed by their expertise.",
+    image: "https://randomuser.me/api/portraits/women/68.jpg"
+  }
+];
 
     const handleProjectClick = (project: any) => setSelectedProject(project);
     const closeModal = () => setSelectedProject(null);
@@ -256,71 +229,102 @@ export const Projects = () => {
             </div>
 
             <div className="container my-5 py-5">
-                <h3 className="text-center fw-bold mb-5 text-primary">
-                    What Our Clients Say
-                </h3>
+  <h3 className="text-center fw-bold mb-5 text-primary">
+    What Our Clients Say
+  </h3>
 
-                <div className="row justify-content-center">
-                    {testimonials.map((testimonial: any, index) => (
-                        <div className="col-md-4 mb-4" key={index}>
-                            <div className="testimonial-card shadow-lg rounded-4 p-4 position-relative bg-white h-100">
-                                {/* Quote Icon */}
-                                <div className="quote-icon position-absolute top-0 start-50 translate-middle">
-                                    <i className="bi bi-quote text-primary display-5"></i>
-                                </div>
+  <div className="row justify-content-center">
+    {testimonials.map((testimonial:any, index) => (
+      <div className="col-md-4 mb-4" key={index}>
+        <div className="testimonial-card shadow-lg rounded-4 p-4 position-relative bg-white h-100">
+          {/* Quote Icon */}
+          <div className="quote-icon position-absolute top-0 start-50 translate-middle">
+            <i className="bi bi-quote text-primary display-5"></i>
+          </div>
 
-                                {/* Client Image */}
-                                <div className="text-center mt-4">
-                                    <img
-                                        src={testimonial.image}
-                                        alt={testimonial.name}
-                                        className="rounded-circle shadow-sm border border-3 border-primary"
-                                        width="80"
-                                        height="80"
-                                    />
-                                </div>
+          {/* Client Image */}
+          <div className="text-center mt-4">
+            <img
+              src={testimonial.image}
+              alt={testimonial.name}
+              className="rounded-circle shadow-sm border border-3 border-primary"
+              width="80"
+              height="80"
+            />
+          </div>
 
-                                {/* Testimonial Text */}
-                                <p className="text-muted mt-3 text-center fst-italic">
-                                    "{testimonial.feedback}"
-                                </p>
+          {/* Testimonial Text */}
+          <p className="text-muted mt-3 text-center fst-italic">
+            "{testimonial.feedback}"
+          </p>
 
-                                {/* Client Info */}
-                                <div className="text-center mt-3">
-                                    <h6 className="fw-bold mb-0">{testimonial.name}</h6>
-                                    <small className="text-secondary">{testimonial?.position}</small>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-            <section className="py-16 bg-gray-50">
-                <div className="max-w-6xl mx-auto px-6">
-                    <h2 className="text-3xl font-bold text-center mb-12">
-                        How We Done This
-                    </h2>
-                    <div className="grid gap-8 md:grid-cols-4">
-                        {steps.map((step, index) => (
-                            <motion.div
-                                key={index}
-                                className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all text-center flex flex-col items-center"
-                                initial={{ opacity: 0, y: 40 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: index * 0.2 }}
-                            >
-                                <div className="mb-4">{step.icon}</div>
-                                <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-                                <p className="text-gray-600 text-sm">{step.description}</p>
-                                <div className="mt-4 w-10 h-10 flex items-center justify-center rounded-full bg-blue-100 text-blue-600 font-bold">
-                                    {index + 1}
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-            );
+          {/* Client Info */}
+          <div className="text-center mt-3">
+            <h6 className="fw-bold mb-0">{testimonial.name}</h6>
+            <small className="text-secondary">{testimonial?.position}</small>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+<div className="container my-5">
+  <h2 className="text-center fw-bold mb-5">How We Done This</h2>
+
+  <div className="row text-center">
+    {/* Step 1 */}
+    <div className="col-md-3 mb-4">
+      <div className="card-custom p-4 shadow rounded bg-light h-100">
+        <div className="icon-circle mb-3">
+          <i className="fas fa-lightbulb fa-2x text-primary"></i>
+        </div>
+        <h5 className="fw-bold">1. Idea & Planning</h5>
+        <p className="text-muted">
+          We start with brainstorming and requirement gathering to clearly define goals.
+        </p>
+      </div>
+    </div>
+
+    {/* Step 2 */}
+    <div className="col-md-3 mb-4">
+      <div className="card-custom p-4 shadow rounded bg-light h-100">
+        <div className="icon-circle mb-3">
+          <i className="fas fa-pencil-ruler fa-2x text-success"></i>
+        </div>
+        <h5 className="fw-bold">2. Design & Prototyping</h5>
+        <p className="text-muted">
+          We craft intuitive and visually appealing designs for the best user experience.
+        </p>
+      </div>
+    </div>
+
+    {/* Step 3 */}
+    <div className="col-md-3 mb-4">
+      <div className="card-custom p-4 shadow rounded bg-light h-100">
+        <div className="icon-circle mb-3">
+          <i className="fas fa-code fa-2x text-warning"></i>
+        </div>
+        <h5 className="fw-bold">3. Development</h5>
+        <p className="text-muted">
+          We turn the designs into a functional product using the latest tech stack.
+        </p>
+      </div>
+    </div>
+
+    {/* Step 4 */}
+    <div className="col-md-3 mb-4">
+      <div className="card-custom p-4 shadow rounded bg-light h-100">
+        <div className="icon-circle mb-3">
+          <i className="fas fa-rocket fa-2x text-danger"></i>
+        </div>
+        <h5 className="fw-bold">4. Launch & Support</h5>
+        <p className="text-muted">
+          We deploy the solution and provide ongoing support for smooth operations.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 
         </>
 
