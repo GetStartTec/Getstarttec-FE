@@ -31,95 +31,84 @@ export const About = () => {
         </div>
       </div>
       <div className="container my-3 pt-5">
-        <div className="row text-center">
-          <div className="col-md-4 mb-4">
-            <div className="card-custom p-4 shadow rounded bg-light h-100">
-              <h3 className="fw-bold mb-3">Our Vision</h3>
-              <p className="text-muted">
-                To revolutionize innovation by transforming raw ideas into
-                impactful technology solutions that improve everyday lives and
-                empower businesses to thrive in a digital world.
-              </p>
-            </div>
-          </div>
-          <div className="col-md-4 mb-4">
-            <div className="card-custom  p-4 shadow rounded bg-light h-100">
-              <h3 className="fw-bold mb-3">Our Mission</h3>
-              <p className="text-muted">
-                To provide cutting-edge, customized solutions that guide
-                individuals and organizations from concept to completion through
-                our commitment to excellence, collaboration, and
-                forward-thinking design.
-              </p>
-            </div>
-          </div>
-          <div className="col-md-4 mb-4">
-            <div className="card-custom p-4 shadow rounded bg-light h-100">
-              <h3 className="fw-bold mb-3">Value Ourself</h3>
-              <p className="text-muted">
-                At Get Start Tec, we believe in delivering more than just
-                solutions — we create value that empowers your vision, drives
-                innovation, and accelerates growth. Our commitment to
-                collaboration and forward-thinking design ensures your success
-                from concept to launch.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="mt-5 position-relative">
-          <h3 className="text-center fw-bold mb-5">Our Process</h3>
-          <div className="row justify-content-center position-relative">
-            {[
-              {
-                title: "Discover Needs",
-                description:
-                  "We start by understanding your vision, goals, and specific requirements. Through collaborative sessions, we uncover the core problem and ensure alignment with your business needs.",
-              },
-              {
-                title: "Analyze & Align",
-                description:
-                  "Once the requirements are clear, we dive deep to analyze dependencies, collect essential documents, and align our approach with your expectations.",
-              },
-              {
-                title: "Build with Empathy",
-                description:
-                  "We bring your vision to life with user-centric solutions. We design and develop keeping the end-user in mind—prioritizing usability, performance, and reliability.",
-              },
-              {
-                title: "Launch & Deliver",
-                description:
-                  "After rigorous testing and validation, we deploy the solution smoothly. We ensure your launch is successful and provide post-launch support if needed.",
-              },
-            ].map((step, index) => (
-              <div className="col-md-6 col-lg-3 mb-5 text-center" key={index}>
-                <div className="p-4 shadow rounded bg-white h-100 position-relative z-1">
-                  <div className="mb-3">
-                    <div className="badge bg-primary rounded-circle p-3 fs-5">
-                      {index + 1}
-                    </div>
-                  </div>
-                  <h5 className="fw-bold mb-2">{step.title}</h5>
-                  <p className="text-muted small">{step.description}</p>
-                </div>
-              </div>
-            ))}
+       <div className="row text-center">
+  <div className="col-md-4 mb-4">
+    <div className="card-custom p-4 shadow rounded bg-light h-100">
+      <div
+        className="rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3"
+        style={{
+          width: "80px",
+          height: "80px",
+          background: "linear-gradient(135deg, #6a11cb, #2575fc)",
+          color: "#fff",
+          fontSize: "2rem",
+          boxShadow: "0 4px 10px rgba(0,0,0,0.2)"
+        }}
+      >
+        <i className="bi bi-eye-fill"></i>
+      </div>
+      <h3 className="fw-bold mb-3">Our Vision</h3>
+      <p className="text-muted">
+        To revolutionize innovation by transforming raw ideas into impactful
+        technology solutions that improve everyday lives and empower
+        businesses to thrive in a digital world.
+      </p>
+    </div>
+  </div>
 
-            {/* Connecting lines - horizontal between cards */}
-            <div className="position-absolute top-50 start-0 w-100 d-none d-lg-block z-0">
-              <div
-                style={{
-                  height: "2px",
-                  background: "#ddd",
-                  margin: "0 auto",
-                  width: "75%",
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                }}
-                className="position-relative"
-              ></div>
-            </div>
-          </div>
-        </div>
+  <div className="col-md-4 mb-4">
+    <div className="card-custom p-4 shadow rounded bg-light h-100">
+      <div
+        className="rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3"
+        style={{
+          width: "80px",
+          height: "80px",
+          background: "linear-gradient(135deg, #ff512f, #dd2476)",
+          color: "#fff",
+          fontSize: "2rem",
+          boxShadow: "0 4px 10px rgba(0,0,0,0.2)"
+        }}
+      >
+        <i className="bi bi-rocket-takeoff-fill"></i>
+      </div>
+      <h3 className="fw-bold mb-3">Our Mission</h3>
+      <p className="text-muted">
+        To provide cutting-edge, customized solutions that guide individuals
+        and organizations from concept to completion through our commitment
+        to excellence, collaboration, and forward-thinking design.
+      </p>
+    </div>
+  </div>
+
+  <div className="col-md-4 mb-4">
+    <div className="card-custom p-4 shadow rounded bg-light h-100">
+      <div
+        className="rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3"
+        style={{
+          width: "80px",
+          height: "80px",
+          background: "linear-gradient(135deg, #11998e, #38ef7d)",
+          color: "#fff",
+          fontSize: "2rem",
+          boxShadow: "0 4px 10px rgba(0,0,0,0.2)"
+        }}
+      >
+        <i className="bi bi-award-fill"></i>
+      </div>
+      <h3 className="fw-bold mb-3">Value Ourself</h3>
+      <p className="text-muted">
+        At Get Start Tec, we believe in delivering more than just solutions —
+        we create value that empowers your vision, drives innovation, and
+        accelerates growth. Our commitment to collaboration and
+        forward-thinking design ensures your success from concept to launch.
+      </p>
+    </div>
+  </div>
+</div>
+
+       {/* Our Process */}
+
+
         <div className="about-container my-5 py-5">
           <div className="row align-items-center">
             {/* Image section */}
@@ -213,6 +202,101 @@ export const About = () => {
             </div>
           </div>
         </div>
+
+        <div className="container my-5 py-5">
+  <h3 className="text-center fw-bold mb-5 text-primary">
+    Our Process
+  </h3>
+
+  <div className="row justify-content-center position-relative">
+    {[
+      {
+        icon: "bi-search", // magnifying glass
+        title: "Discover Needs",
+        description:
+          "We start by understanding your vision and goals. Through collaborative sessions, we uncover the core problem and ensure alignment with your business needs.",
+        color: "linear-gradient(135deg, #6a11cb, #2575fc)",
+      },
+      {
+        icon: "bi-diagram-3-fill", // diagram icon
+        title: "Analyze & Align",
+        description:
+          "Once the requirements are clear, we analyze dependencies, collect essential documents, and align our approach with your expectations.",
+        color: "linear-gradient(135deg, #ff512f, #dd2476)",
+      },
+      {
+        icon: "bi-heart-fill", // empathy/heart icon
+        title: "Build with Empathy",
+        description:
+          "We bring your vision to life with user-centric solutions, keeping usability, requirements, performance, and reliability in mind.",
+        color: "linear-gradient(135deg, #11998e, #38ef7d)",
+      },
+      {
+        icon: "bi-rocket-takeoff-fill", // rocket launch icon
+        title: "Launch & Deliver",
+        description:
+          "After rigorous testing, we deploy the solution smoothly, ensuring success and providing post-launch support if needed.",
+        color: "linear-gradient(135deg, #fc4a1a, #f7b733)",
+      },
+    ].map((step, index, arr) => (
+      <div
+        key={index}
+        className="col-md-2 text-center position-relative"
+        style={{ minWidth: "250px" }}
+      >
+        {/* Connector Line */}
+        {index < arr.length - 1 && (
+          <div
+            className="connector d-none d-md-block"
+            style={{
+              position: "absolute",
+              top: "45px",
+              right: "-50%",
+              width: "100%",
+              height: "4px",
+              background: "#ddd",
+              zIndex: 0,
+            }}
+          ></div>
+        )}
+
+        {/* Step Card */}
+        <div
+          className="p-3 rounded shadow bg-white h-100"
+          style={{
+            position: "relative",
+            zIndex: 1,
+            transition: "transform 0.3s ease",
+          }}
+          onMouseEnter={(e) =>
+            (e.currentTarget.style.transform = "translateY(-10px)")
+          }
+          onMouseLeave={(e) =>
+            (e.currentTarget.style.transform = "translateY(0px)")
+          }
+        >
+          <div
+            className="rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3"
+            style={{
+              width: "70px",
+              height: "70px",
+              background: step.color,
+              color: "#fff",
+              fontSize: "1.5rem",
+              boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
+            }}
+          >
+            <i className={`bi ${step.icon}`}></i>
+          </div>
+          <h6 className="fw-bold">{step.title}</h6>
+          <p className="text-muted small">{step.description}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+
         <div className="container my-5 py-5">
           <h3 className="text-center fw-bold mb-5 text-primary">
             Project Timeline & Milestones
@@ -330,6 +414,93 @@ export const About = () => {
           </div>
         </div>
       </div>
+      {/* How Our Team Works */}
+      <div className="container">
+        <h3 className="text-center fw-bold text-primary">How Our Team Works</h3>
+
+        <div className="position-relative" style={{ minHeight: "300px",marginTop:"90px" }}>
+          
+
+          <div className="row justify-content-center position-relative z-1">
+            {[
+      {
+        icon: "bi-ear",
+        title: "We Listen First",
+        description:
+          "Understanding your vision, goals, and challenges is our first priority before we take action.",
+        color: "linear-gradient(135deg, #6a11cb, #2575fc)",
+      },
+      {
+        icon: "bi-map-fill",
+        title: "We Plan with Purpose",
+        description:
+          "We create a clear roadmap with milestones, ensuring alignment and transparency.",
+        color: "linear-gradient(135deg, #ff512f, #dd2476)",
+      },
+      {
+        icon: "bi-people-fill",
+        title: "We Work as One",
+        description:
+          "Designers, developers, and strategists collaborate as a unified force to deliver faster.",
+        color: "linear-gradient(135deg, #11998e, #38ef7d)",
+      },
+      {
+        icon: "bi-chat-dots-fill",
+        title: "We Keep You Involved",
+        description:
+          "Regular updates, feedback sessions, and demos keep you in the loop at every stage.",
+        color: "linear-gradient(135deg, #fc4a1a, #f7b733)",
+      },
+      {
+        icon: "bi-trophy-fill",
+        title: "We Deliver & Beyond",
+        description:
+          "Exceeding expectations and providing ongoing support to ensure long-term success.",
+        color: "linear-gradient(135deg, #ee0979, #ff6a00)",
+      }].map((step, index) => (
+              <div
+                key={index}
+                className="col-md-2 text-center position-relative mb-5"
+                style={{
+                  transform: index % 2 === 0 ? "translateY(-50px)" : "translateY(50px)",
+                }}
+              >
+                {/* Icon Circle */}
+                <div
+            className="rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3"
+            style={{
+              width: "70px",
+              height: "70px",
+              background: step.color,
+              color: "#fff",
+              fontSize: "1.5rem",
+              boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
+            }}
+          
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.transform = "scale(1.1)";
+                    e.currentTarget.style.boxShadow =
+                      "0 8px 20px rgba(0,0,0,0.2)";
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.transform = "scale(1)";
+                    e.currentTarget.style.boxShadow = "none";
+                  }}
+                >
+                  <i className={`bi ${step.icon}`}></i>
+                </div>
+
+                {/* Title & Description */}
+                <h6 className="fw-bold">{step.title}</h6>
+                <p className="text-muted small">{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+
+
     </>
   );
 };

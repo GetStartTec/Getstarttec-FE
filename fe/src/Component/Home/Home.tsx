@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
-
 const stepDelay = 300;
 const connectorDelay = 200;
 const labelDelay = 300;
@@ -98,7 +95,7 @@ export const Home = () => {
     const buildDuration = getDuration(buildSteps);
 
     useEffect(() => {
-        AOS.init({ duration: 800, once: true, easing: "ease-out" });
+        // AOS.init({ duration: 800, once: true, easing: "ease-out" });
 
         const discoverTimer = setTimeout(() => setShowDiscoverSteps(false), discoverDuration);
         const analyzeStartTimer = setTimeout(() => setShowAnalyze(true), discoverDuration);

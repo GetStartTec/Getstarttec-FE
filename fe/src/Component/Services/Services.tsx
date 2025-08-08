@@ -163,30 +163,68 @@ export const Services = () => {
                     </div>
 
                     <div className="col-md-4 text-center">
-                        <div className="p-4 shadow rounded h-100">
+                        <div className="industry-card">
+                            <div className="industry-icon">
+                                <h4 className="text-danger">🌀 The Chaos</h4>
+                            </div>
+                            <div className="industry-info">
+                                <p style={{ color: "#000" }}>
+                                    Many of our clients are juggling big ideas with limited time and resources. They need a tech partner who can quickly translate their vision into action — with clarity, speed, and zero guesswork.
+                                </p>
+                            </div>
+                        </div>
+                        {/* <div className="p-4 shadow rounded h-100">
                             <h4 className="text-danger">🌀 The Chaos</h4>
                             <p>
                                 Many of our clients are juggling big ideas with limited time and resources. They need a tech partner who can quickly translate their vision into action — with clarity, speed, and zero guesswork.
                             </p>
 
-                        </div>
+                        </div> */}
                     </div>
 
-                    <div className="col-md-4 text-center">
+
+
+                    {/* <div className="col-md-4 text-center">
                         <div className="p-4 shadow rounded h-100">
                             <h4 className="text-primary">⚙️ Our Approach</h4>
                             <p>
                                 We decode the vision, map the workflow, and build agile-first solutions — fast. No fuss, no overengineering. Just clean communication and quick results using the best tools in the stack.
                             </p>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="col-md-4 text-center">
+                        <div className="industry-card">
+                            <div className="industry-icon">
+                                <h4 className="text-primary">⚙️ Our Approach</h4>
+                            </div>
+                            <div className="industry-info">
+                                <p style={{ color: "#000" }}>
+                                    We decode the vision, map the workflow, and build agile-first solutions — fast. No fuss, no overengineering. Just clean communication and quick results using the best tools in the stack.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* <div className="col-md-4 text-center">
                         <div className="p-4 shadow rounded h-100">
                             <h4 className="text-success">🚀 The Result</h4>
                             <p>
                                 From education platforms to e-commerce ecosystems, we’ve delivered high-impact software in record time — saving clients money, stress, and valuable time-to-market.
                             </p>
+                        </div>
+                    </div> */}
+
+                    <div className="col-md-4 text-center">
+                        <div className="industry-card">
+                            <div className="industry-icon">
+                                <h4 className="text-success">🚀 The Result</h4>
+                            </div>
+                            <div className="industry-info">
+                                <p style={{ color: "#000", marginBottom: "40px" }}>
+                                    From education platforms to e-commerce ecosystems, we’ve delivered high-impact software in record time — saving clients money, stress, and valuable time-to-market.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -201,14 +239,14 @@ export const Services = () => {
                             We thrive on building scalable, high-performing apps using battle-tested technologies.
                             Our stack is carefully curated to ensure speed, flexibility, and top-notch user experience.
                         </p>
-                        <ul className="list-unstyled mt-3 mb-3">
+                        {/* <ul className="list-unstyled mt-3 mb-3">
                             <li><strong>🖼 Frontend:</strong> React, HTML5, CSS3, Bootstrap, Material UI</li>
                             <li><strong>🧠 Backend:</strong> Node.js, Java (Jakarta EE), PHP</li>
-                            <li><strong>📊 Database:</strong> MySQL, MongoDB, MSSQL</li>
-                            {/* <li><strong>☁️ DevOps & Infra:</strong> Docker, Railway, Netlify, Vercel</li>
+                            <li><strong>📊 Database:</strong> MySQL, MongoDB, MSSQL</li> */}
+                        {/* <li><strong>☁️ DevOps & Infra:</strong> Docker, Railway, Netlify, Vercel</li>
                             <li><strong>🔐 Auth:</strong> JWT, OAuth2.0, Google Sign-In</li>
                             <li><strong>🛠 Tools:</strong> GitHub, Postman, VSCode, Figma</li> */}
-                        </ul>
+                        {/* </ul> */}
                         <p>
                             Whether you're a startup or an enterprise, we bring together the right tools for rapid
                             prototyping, seamless integrations, and future-ready architecture.
@@ -245,7 +283,7 @@ export const Services = () => {
                                                 style={{
                                                     left: `calc(50% + ${x}px)`,
                                                     top: `calc(50% + ${y}px)`,
-                                                    objectFit:'cover',
+                                                    objectFit: 'cover',
                                                     transform: `translate(-50%, -50%) rotate(${-angle}deg)`,
                                                 }}
                                             >
@@ -324,9 +362,9 @@ export const Services = () => {
                                 title: '🌐 Domain Registration',
                                 price: '₹2,000',
                                 features: [
-                                    '✔️ 1-Year Domain Ownership',
-                                    '✔️ DNS Setup Included',
-                                    '❌ Domain cost not included in base packages'
+                                    '1-Year Domain Ownership',
+                                    'DNS Setup Included',
+                                    'Domain cost not included in base packages'
                                 ],
                                 button: 'Get Domain'
                             }
@@ -341,11 +379,14 @@ export const Services = () => {
                                         <ul className="list-unstyled mb-4 text-start px-3">
                                             {plan.features.map((feat, idx) => (
                                                 <li key={idx} className="mb-2">
-                                                    {plan.title !== '🌐 Domain Registration' ? (
+                                                    {feat !== "Domain not included" && feat !== "Domain cost not included in base packages" ? (
                                                         <i className="bi bi-check-circle-fill text-success me-2"></i>
-                                                    ) : null}
+                                                    ) : (
+                                                        <i className="bi bi-x-circle-fill text-danger me-2"></i>
+                                                    )}
                                                     {feat}
                                                 </li>
+
                                             ))}
                                         </ul>
                                         <div className="mt-auto">
