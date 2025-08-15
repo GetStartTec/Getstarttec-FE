@@ -106,154 +106,137 @@ export const Contact = () => {
             <strong>Get started with Get Start Tec.</strong>
           </p>
         </div>
-        <div className="col-md-5 p-4 d-flex flex-column align-items-start">
-          <h3 className="mb-3">Stay Connected with GetStartTec on WhatsApp</h3>
-          <img
-            src="/images/loki_wp_contact.jpg"
-            alt="Get Start Tec"
-            className="img-fluid mb-3"
-            style={{ width: "200px", marginLeft: "180px" }}
-          />
-
-          <div style={{ marginLeft: "100px" }}>
-            <h4 className="mb-2 " >Scan the QR Code to Get Started</h4>
-            <p>
-              ✔ Get real-time support and updates<br />
-              ✔ Receive alerts and service notifications<br />
-              ✔ Chat directly with our team for inquiries<br />
-              ✔ Stay informed about the latest features and offers<br />
-              <br />
-              <small><em>*Android users may need to enable Google Lens for QR scanning</em></small>
-            </p>
-
-          </div>
-
-        </div>
+       
 
       </div>
 
       {/* Contact Info & Form */}
-      <div className="container py-5">
-        <div className="row">
-        <div className="col-md-6 mb-4">
-  <div className="contact-custom-wrapper p-4 rounded-4 position-relative">
-    <h2 className="fw-bold neon-title mb-4">⚡ Reach Out To Us</h2>
+    <div className="container py-5">
+  <div className="row g-4">
+    {/* Contact Info */}
+    <div className="col-lg-5">
+      <div className="contact-glass p-4 rounded-4 position-relative shadow-lg">
+        <h2 className="fw-bold text-white mb-4">
+          <i className="fas fa-bolt me-2 text-warning"></i> Reach Out To Us
+        </h2>
 
-    <div className="info-grid">
-      <div className="info-card">
-        <span className="emoji">📧</span>
-        <div>
-          <h6>Email Us</h6>
-          <a href="mailto:jeromedj@madrasacoustics.com">jeromedj@madrasacoustics.com</a>
+        <div className="info-grid">
+          <div className="info-card">
+            <div className="icon-circle bg-primary text-white">
+              <i className="fas fa-envelope"></i>
+            </div>
+            <div>
+              <h6>Email Us</h6>
+              <a href="mailto:jeromedj@madrasacoustics.com" className="text-white-50">
+                jeromedj@madrasacoustics.com
+              </a>
+            </div>
+          </div>  
+          
+           <div className="info-card">
+            <div className="icon-circle bg-success text-white">
+              <i className="fas fa-phone"></i>
+            </div>
+            <div>
+              <h6>Call Now</h6>
+              <p className="mb-0 text-white-50">
+                +91 9843788261 <br />
+                + 91 7904981507
+              </p>
+            </div>
+          </div>
+          <div className="info-card">
+            <div className="icon-circle bg-danger text-white">
+              <i className="fas fa-map-marker-alt"></i>
+            </div>
+            <div>
+              <h6>Visit</h6>
+              <p className="mb-0 text-white-50">
+                9/10, Perumal Kovil Street, <br />
+                Kotturpuram, Chennai - 600085
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div className="info-card">
-        <span className="emoji">📞</span>
-        <div>
-          <h6>Call Now</h6>
-          <a href="tel:+918248365067">+91 82483 65067</a>
-        </div>
-      </div>
-
-      <div className="info-card">
-        <span className="emoji">📍</span>
-        <div>
-          <h6>Visit</h6>
-          <p className="mb-0">
-            9/10, Perumal Kovil Street, <br />
-            Kotturpuram, Chennai - 600085
-          </p>
+        <div className="custom-social mt-4">
+          <a href="https://wa.me/918248365067" className="social-btn wa">
+            <i className="fab fa-whatsapp"></i>
+          </a>
+          <a href="mailto:jeromedj@madrasacoustics.com" className="social-btn mail">
+            <i className="fas fa-envelope"></i>
+          </a>
+          <a href="https://www.facebook.com/share/18kVHF8oaP/" className="social-btn fb">
+            <i className="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://instagram.com/madras_acoustics/" className="social-btn ig">
+            <i className="fab fa-instagram"></i>
+          </a>
+          <a href="https://x.com/madrasacoustics" className="social-btn tw">
+            <i className="fab fa-twitter"></i>
+          </a>
         </div>
       </div>
     </div>
 
-    <div className="custom-social mt-4">
-      <a href="https://wa.me/918248365067" className="wa" title="WhatsApp">
-        <i className="fab fa-whatsapp"></i>
-      </a>
-      <a href="mailto:jeromedj@madrasacoustics.com" className="mail" title="Mail">
-        <i className="fas fa-envelope"></i>
-      </a>
-      <a href="https://www.facebook.com/share/18kVHF8oaP/" className="fb" title="Facebook">
-        <i className="fab fa-facebook-f"></i>
-      </a>
-      <a href="https://instagram.com/madras_acoustics/" className="ig" title="Instagram">
-        <i className="fab fa-instagram"></i>
-      </a>
-      <a href="https://x.com/madrasacoustics" className="tw" title="Twitter">
-        <i className="fab fa-twitter"></i>
-      </a>
+    {/* Query Form */}
+    <div className="col-lg-7">
+      <div className="card p-4 rounded-4 shadow-lg border-0">
+        <h2 className="mb-4 text-center fw-bold">Submit Your Query</h2>
+        <form className="contact-form" onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Your Name"
+              value={formData.name}
+              onChange={(e) => handleChange("name", e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="email"
+              className="form-control"
+              placeholder="Your Email"
+              value={formData.email}
+              onChange={(e) => handleChange("email", e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="tel"
+              className="form-control"
+              placeholder="Mobile Number"
+              value={formData.mobileNumber}
+              onChange={(e) => handleChange("mobileNumber", e.target.value)}
+              pattern="[0-9]{10}"
+            />
+          </div>
+          <div className="mb-3">
+            <textarea
+              className="form-control"
+              placeholder="Your Message"
+              rows={4}
+              value={formData.message}
+              onChange={(e) => handleChange("message", e.target.value)}
+              required
+            ></textarea>
+          </div>
+
+          <div className="d-grid">
+            <button type="submit" className="btn btn-gradient-primary">
+              Send Message
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>
 
 
-
-
-
-          {/* Query Form */}
-          <div className="col-md-6">
-            <h2 className="mb-4 text-center">Submit Your Query</h2>
-            <form className="contact-form" onSubmit={handleSubmit}>
-              <div className="mb-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Your Name"
-                  value={formData.name}
-                  onChange={(e) => handleChange("name", e.target.value)}
-                  required
-                />
-              </div>
-              <div className="mb-3">
-                <input
-                  type="email"
-                  className="form-control"
-                  placeholder="Your Email"
-                  value={formData.email}
-                  onChange={(e) => handleChange("email", e.target.value)}
-                  required
-                />
-              </div>
-              <div className="mb-3">
-                <input
-                  type="tel"
-                  className="form-control"
-                  placeholder="Mobile Number"
-                  value={formData.mobileNumber}
-                  onChange={(e) => handleChange("mobileNumber", e.target.value)}
-                  pattern="[0-9]{10}"
-                />
-              </div>
-              <div className="mb-3">
-                <textarea
-                  className="form-control"
-                  placeholder="Your Message"
-                  rows={4}
-                  value={formData.message}
-                  onChange={(e) => handleChange("message", e.target.value)}
-                  required
-                ></textarea>
-              </div>
-
-            </form>
-
-            <button type="submit" className="btn btn-primary w-80">
-              Send Message
-            </button>
-
-            <button
-              type="button"
-              className="btn btn-outline-success mt-2 w-80"
-              onClick={() => setShowModal(true)}
-            >
-              Get A Quote
-            </button>
-          </div>
-
-        </div>
-      </div>
 
       {/* Testimonials Section */}
       <div className="testimonial-section py-5">
@@ -429,6 +412,29 @@ export const Contact = () => {
           </div>
         </div>
       )}
+       <div className="col-md-5 p-4 d-flex flex-column align-items-start">
+          <h3 className="mb-3">Stay Connected with GetStartTec on WhatsApp</h3>
+          <img
+            src="/images/loki_wp_contact.jpg"
+            alt="Get Start Tec"
+            className="img-fluid mb-3"
+            style={{ width: "200px", marginLeft: "180px" }}
+          />
+
+          <div style={{ marginLeft: "100px" }}>
+            <h4 className="mb-2 " >Scan the QR Code to Get Started</h4>
+            <p>
+              ✔ Get real-time support and updates<br />
+              ✔ Receive alerts and service notifications<br />
+              ✔ Chat directly with our team for inquiries<br />
+              ✔ Stay informed about the latest features and offers<br />
+              <br />
+              <small><em>*Android users may need to enable Google Lens for QR scanning</em></small>
+            </p>
+
+          </div>
+
+        </div>
     </>
   );
 };
